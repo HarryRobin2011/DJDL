@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>大雞大利</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,minimal-ui">
+	<!-- viewport 后面加上 minimal-ui 在safri 体现效果 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- iphone safri 全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- iphone safri 状态栏的背景颜色 -->
+	<meta name="apple-mobile-web-app-title" content="一文水稻">
+	<!-- iphone safri 添加到主屏界面的显示标题 -->
+	<meta name="format-detection" content="telphone=no, email=no">
+	<!-- 禁止数字识自动别为电话号码 -->
+	<meta name="renderer" content="webkit">
+	<!-- 启用360浏览器的极速模式(webkit) -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="HandheldFriendly" content="true">
+	<!-- 是针对一些老的不识别viewport的浏览器，列如黑莓 -->
+	<meta name="MobileOptimized" content="320">
+	<!-- 微软的老式浏览器 -->
+	<meta http-equiv="Cache-Control" content="no-siteapp">
+	<!-- 禁止百度转码 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- uc强制竖屏 -->
+	<meta name="browsermode" content="application">
+	<!-- UC应用模式 -->
+	<meta name="full-screen" content="yes">
+	<!-- UC强制全屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- QQ强制竖屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- QQ应用模式 -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="msapplication-TileColor" content="#000">
+	<!-- Windows 8 磁贴颜色 -->
+	<meta name="msapplication-TileImage" content="icon.png">
+	<!-- Windows 8 磁贴图标 -->
+	<link rel="Shortcut Icon" href="__PUBLIC__/fuguiji/favicon.ico">
+	<!-- 浏览器tab图标 -->
+	<link rel="apple-touch-icon" href="__PUBLIC__/fuguiji/images/icon.jpg">
+	<!-- iPhone 和 iTouch，默认 57x57 像素，必须有 -->
+	<link rel="apple-touch-icon" sizes="72x72" href="__PUBLIC__/fuguiji/images/icon.jpg">
+	<!-- iPad，72x72 像素  -->
+	<link rel="apple-touch-icon" sizes="114x114" href="__PUBLIC__/fuguiji/images/icon.jpg">
+	<!-- Retina iPhone 和 Retina iTouch，114x114 像素 -->
+	<link rel="stylesheet" href="__PUBLIC__/fuguiji/css/reset.css">
+	<link rel="stylesheet" href="__PUBLIC__/fuguiji/css/style.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/chickensLog/log.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/loign/login.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/home/popup.css">
+</head>
+
+<body>
+<div id="page" class="page">
+	<div class="chickensLog">
+		<header>
+			<div class="header-name">
+				<div class="header_box" style="background-image: url(__PUBLIC__/fuguiji/images/shop/topMarket.png);"> </div>
+				<!--<div class="leaf">ds西瓜</div>-->
+			</div>
+			<div class="log-deal-with">
+				<!--<img src="__PUBLIC__/fuguiji/images/pop/deal-with.png">-->
+				<a href="javascript:history.back(-1);">
+					<img style="z-index: 100" class="black_2" src="__PUBLIC__/fuguiji/images/pop/deal-bnt.png">
+				</a>
+			</div>
+			<div class="log-deal-top-text" style=""></div>
+		</header>
+		<section class="log-main">
+			<div class="log-package">
+				<div class="log-content clearfix log_content_1" style="display:block; height: 90%;">
+
+					<!-- <div class="marketListTop">
+                        话费充值
+                        <ul class="mlT-list">
+                            <li>话费充值</li>
+                            <li>数码家电</li>
+                            <li>生活日用</li>
+                        </ul>
+                    </div> -->
+
+					<ul class="marketUl clickUl">
+						<volist name="list"  id="vo">
+							<li data-gid="<{$vo.id}>">
+								<div class="m-l-left" style="width:70px; height:70px;">
+									<img width="100%" height="100%" src="<{$vo['goods_imgurl']}>">
+								</div>
+								<div class="m-r-right">
+									<p>
+										<span class="sp1"><{$vo.goods_name}></span>
+										<span class="sc"><img width="15" height="15" src="__PUBLIC__/fuguiji/images/shop/star-1.png">1134</span>
+									</p>
+									<p>电话栏准确填写手机号码！填写错误自行承担！月初月末48小时</p>
+									<p style="color:#905b20">库存量:&nbsp;&nbsp;<span><{$vo.goods_stock}></span></p>
+									<p style="color:#905b20">已出售:&nbsp;&nbsp;<span>1190</span></p>
+									<p class="m-egg-num" style="text-align: right;"><span><{$vo.goods_price}></span></p>
+								</div>
+							</li>
+						</volist>
+					</ul>
+				</div>
+				<div class="log-content clearfix log_content_2" style="display:none; height: 90%;">
+					<ul class="dingdanList">
+						<li>
+							<p>订单号：<span>123456</span></p>
+							<p>创建时间：<span>2018-05-17</span></p>
+							<p>订单状态：<span>已完成</span></p>
+						</li>
+						<li>
+							<p>订单号：<span>123456</span></p>
+							<p>创建时间：<span>2018-05-17</span></p>
+							<p>订单状态：<span>已完成</span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="log-sidebar">
+				<ul>
+					<li data-tab="1" class="no-nth-log1 no-nth-market1"> </li>
+					<li data-tab="2" class="nth-log2 nth-market2"> </li>
+				</ul>
+			</div>
+		</section>
+	</div>
+
+</div>
+<!--<audio src="music/bg.mp3" preload="" loop></audio>-->
+<div class="alert"  id="changePassword" style="display:none;">
+	<div class="password-board">
+		<div class="context" style="top: 18%;">
+			<p style="color:red;font-size: 1.2rem">二级验证</p>
+			<div style="width: 90%; margin-top: 10%">
+				<input type="password" id="highpass" name="newPassword" placeholder="输入交易密码"/>
+			</div>
+		</div>
+		<a class="close-btn closePasswordBtn"></a>
+		<a class="only-confirm confirmChangeBtn confirmChangeBtn1" style="left: -3%" href="javascript:void(0);" onclick="goodsBuy()"></a>
+	</div>
+</div>
+
+<section class="shade" style="display: none;">
+	<!--todo:我的商城-->
+	<div class="content storage shops shapsBg">
+		<div class="title">
+			<img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt="">
+			<img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt="">
+			<img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt="">
+			<em>提交订单</em>
+		</div>
+		<i class="close" style="top: 0"></i>
+		<i class="bottom"></i>
+		<ul class="showShop marketUl">
+			<!--todo：列表项固定-->
+			<input type="hidden" id="goodsId" value=""/>
+			<li>
+				<div class="m-l-left" style="width:70px; height:70px;">
+					<img id="gpid" width="100%" height="100%" src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt="">
+				</div>
+				<div class="m-r-right">
+					<p><span style="color:#905b20;" class="sp1" id="goodsname"></span> </p>
+					<i style="font-size: 14px;color:#905b20">电话栏准确填写手机号码！填写错误自行承担！月初月末48小时</i>
+					<p style="color:#905b20;">单价:&nbsp;&nbsp;<span id="price"></span>个鸡蛋</p>
+				</div>
+			</li>
+		</ul>
+		<div class="showShopNum">
+			<p>
+				<span>购买数量</span>
+				<span style="width: 140px;text-align: left;padding-left: 10px" class="amount_box">
+                    <a href="javascript:;" class="reduce reSty">-</a>
+                    <input type="text" value="1" class="sum">
+                    <a href="javascript:;" class="plus">+</a>
+                </span>
+			</p>
+			<p><span>姓名</span> <input id="name" type="text" name="num"></p>
+			<p><span>手机号</span> <input id="phone" type="text" name="num"></p>
+		</div>
+		<div class="showShopNum">
+			<p style="color:red">*手续费是商品总额的10%</p>
+			<p style="margin:.5rem 0">支付鸡蛋：<span id="totalMoney"></span>个</p>
+		</div>
+		<div id="btnBuy" class="buyBtn">
+			立即购买
+		</div>
+	</div>
+</section>
+
+<!--2017-2-25更新-->
+<div class="login-alert login-alert-msg" id="alertMsg" style="display:none;z-index: 999;">
+	<div class="login-alert-board msg-board">
+		<div class="context">
+			<div class="text">这里是你自定义的内容</div>
+		</div>
+		<a class="only-confirm"></a>
+	</div>
+</div>
+<script src="__PUBLIC__/fuguiji/js/jquery-1.7.2.min.js"></script>
+<script src="__PUBLIC__/fuguiji/js/function.js"></script>
+<script src="__PUBLIC__/fuguiji/js/global.js"></script>
+<!-- 获取验证码 -->
+<script type="text/javascript">
+    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    var code = ""; //验证码
+    var codeLength = 6;//验证码长度
+    function sendMessage() {
+        curCount = count;
+        var dealType; //验证方式
+        var uid=$("#uid").val();//用户uid
+        if ($("#phone").attr("checked") == true) {
+            dealType = "phone";
+        }
+        else {
+            dealType = "email";
+        }
+        $.ajax({
+            url:host + "/User/getUser",
+            type:"post",
+            data:{token:userInfo.token},
+            dataType:"json",
+            async: false,
+            success:function(data){
+                console.log(data);
+                if(data.errcode != 10000){
+                    alert(data.msg);
+                }else{
+                    $.ajax({
+                        url:host + "/Tool/sendCode",
+                        type:"post",
+                        data:{mobile:data.result[0].account},
+                        dataType:"json",
+                        async: false,
+                        success:function(data){
+                            if(data.errcode != 10000){
+                                alert(data.msg);
+                            }else{
+                                //设置button效果，开始计时
+                                $("#btnSendCode").attr("disabled", "true");
+                                $("#btnSendCode").val( + curCount + "秒再获取");
+                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+            code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val( + curCount + "秒再获取");
+        }
+    }
+
+    //=================================================商品数量==============================================
+    var $plus = $('.plus'),
+        $reduce = $('.reduce');
+    $plus.click(function () {
+        var $inputVal = $(this).prev('input'),
+            $count = parseInt($inputVal.val())+1,
+            $obj = $(this).parents('.amount_box').find('.reduce');
+        $inputVal.val($count);
+        var price = parseFloat($("#price").text());
+        var totalMoney = $count * price;
+        totalMoney = totalMoney + totalMoney*0.1;
+        $("#totalMoney").text(totalMoney.toFixed(2));
+        if($inputVal.val()>1 && $obj.hasClass('reSty')){
+            $obj.removeClass('reSty');
+        }
+    });
+
+    $reduce.click(function () {
+        var $inputVal = $(this).next('input'),
+            $count = parseInt($inputVal.val())-1;
+        if($inputVal.val()>1){
+            $inputVal.val($count);
+            var price = parseFloat($("#price").text());
+            var totalMoney = $count * price;
+            totalMoney = totalMoney + totalMoney*0.1;
+            $("#totalMoney").text(totalMoney.toFixed(2));
+        }
+        if($inputVal.val()==1 && !$(this).hasClass('reSty')){
+            $(this).addClass('reSty');
+        }
+    });
+
+    //=================================================点击购买==============================================
+
+    $(".clickUl li").click(function(){
+        var goodsId = $(this).attr("data-gid");
+        var path=$(this).find("div>img")[0].src;
+        var goodsname=$(this).find(".sp1").text();
+        var price = parseFloat($(this).find(".m-egg-num").find("span").text());
+        console.log(goodsname);
+        $("#goodsId").val(goodsId);
+        $("#gpid").attr('src',path);
+        $("#goodsname").text(goodsname);
+        $("#price").text(price.toFixed(2));
+        $(".sum").val(1);
+        var totalMoney = price + (price*0.1);
+        $("#totalMoney").text(totalMoney.toFixed(2));
+        $(".shade").show();
+        $(".shapsBg").show();
+
+    });
+    $("#btnBuy").click(function(){
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        if (name==undefined || name == "") {
+            alertMsg("请输入姓名");
+            return;
+		}
+        if (phone==undefined || phone == "") {
+            alertMsg("请输入手机号");
+            return;
+        }
+        $("#changePassword").show();
+        $(".shade").hide();
+        $(".shapsBg").hide();
+    });
+
+    function goodsBuy(){
+        var gid = $("#goodsId").val();
+        var highpass = $("#highpass").val();
+        var name = $("name").val();
+        var phone = $("phone").val();
+        $.ajax({
+            url: host + "/User/goods_orders",
+            type: "post",
+            data: {
+                token: userInfo.token,
+                goods_id: gid,
+				password: highpass,
+                pay_name: '余额支付'
+            },
+            dataType: "json",
+            success: function(data) {
+                if(data.errorcode == 0) {
+                    alertMsg('您已经成功购买');
+                } else {
+                    alertMsg(data.errormsg);
+                }
+            }
+        });
+    }
+
+    function changeHighPass(){
+        var code=$("#code0").val();
+        var highpass=$("#highpass").val();
+        if(!code){
+            alert('请输入验证码');
+            return;
+        }
+        if(!highpass){
+            alert('请输入二级密码');
+            return;
+        }
+        $.ajax({
+            url:host + "/User/changeHighPass",
+            type:"post",
+            data:{
+                token:userInfo.token,
+                code:code,
+                highpass:highpass
+            },
+            dataType:"json",
+            async: true,
+            success:function(data){
+                if(data.errcode != 10000){
+                    alert(data.msg);
+                }else{
+                    alert('密码修改成功');
+                }
+
+            }
+        });
+    }
+</script>
+
+<script>
+    $(function() {
+        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+
+        gethistorylIst();
+        function gethistorylIst(){
+            $.ajax({
+                url: host + "/User/gethistory",
+                type: "post",
+                data: {
+                    token: userInfo.token
+                },
+                dataType: "json",
+                success: function(data) {
+                    if(data.errcode == 10000) {
+                        $('#total_profit .dasao_profit').html(data.result[0].dasao);
+                        $('#total_profit .total_produce_egg').html(data.result[0].egg);
+                        $('#total_profit .hatch_profit').html(data.result[0].machine_animal);
+                    } else {
+                        alertMsg(data.msg);
+                    }
+                },
+                error: function(data) {}
+
+            });
+        }
+
+
+        $(".log-sidebar ul li").click(function() {
+            var index = $(this).attr('data-tab') - 1;
+            for(var i = 1; i <= 4; i++) {
+                $(".log-sidebar ul li").eq(i - 1).attr("class", "nth-market" + i);
+            }
+            $(this).attr("class", "no-nth-market" + (index + 1));
+
+            $(".log-package .log-content").eq(index).siblings(".log-content").hide().end().show();
+        })
+
+
+
+
+        //  $(".log-sidebar ul li").each(function (index){
+        //        $(this).click(function (){
+        //             for(var i=1;i<=4;i++)
+        //             {
+        //               $(".log-sidebar ul li").eq(i-1).attr("class","nth-log"+i);
+        //             }
+        //          $(this).attr("class","no-nth-log"+(index+1));
+        //
+        //          $(".log-package .log-content").eq(index).siblings(".log-content").hide().end().show();
+        //        });
+        //  });
+
+    });
+</script>
+<script>
+    $(".marketListTop").click(function () {
+        if($('.marketListTop ul').is('.active')){
+            $('.marketListTop ul').removeClass('active');
+        }else{
+            $('.marketListTop ul').addClass('active');
+        }
+    });
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+﻿<extend name="Tool@Index:index" />
+<block name="title">股本管理</block>
+<block name="header"></block>
+<block name="aside"></block>
+<block name="content">
+
+<style>
+.star-bar-show {
+	background: url(__HUI__/images/iconpic-star-S-default.png) repeat-x 0 0
+}
+
+.star-bar-show .star {
+	background: url(__HUI__/images/iconpic-star-S.png) repeat-x 0 0;
+}
+
+.star-1 {
+	width: 20%;
+}
+
+.star-2 {
+	width: 40%
+}
+
+.star-3 {
+	width: 60%;
+}
+
+.star-4 {
+	width: 80%
+}
+
+.star-5 {
+	width: 100%
+}
+
+.star-bar-show.size-M {
+	width: 120px;
+	height: 24px
+}
+
+.star-bar-show.size-M, .star-bar-show.size-M .star {
+	background-size: 24px
+}
+
+.star-bar-show.size-M .star {
+	height: 24px
+}
+
+.star-bar-show.size-S {
+	width: 80px;
+	height: 16px
+}
+
+.star-bar-show.size-S, .star-bar-show.size-S .star {
+	background-size: 16px
+}
+
+.star-bar-show.size-S .star {
+	height: 16px
+}
+
+.star-bar {
+	font-size: 0;
+	line-height: 0
+}
+
+.star-bar .star {
+	display: inline-block;
+	float: left
+}
+</style>
+
+
+<nav class="breadcrumb">
+	<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
+	用户中心 <span class="c-gray en">&gt;</span> 股本管理 <a
+		class="btn btn-success radius r"
+		style="line-height: 1.6em; margin-top: 3px"
+		href="javascript:location.replace(location.href);" title="刷新"><i
+		class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+<div class="page-container">
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"> <a href="javascript:;"
+			onclick="member_add('新增股本','<{:U('Tool/Index/equity_add')}>','','310')"
+			class="btn btn-primary radius"> <i class="Hui-iconfont">&#xe600;</i>
+				新增股本
+		</a></span> <span class="r">共计投入：<strong><{$equity.totalnum|default=0}></strong>只母鸡
+			| 剩余股本：<strong><{$equity.currnum|default=0.00}></strong>只母鸡
+		</span>
+	</div>
+	<div class="mt-20">
+		<table
+			class="table table-border table-bordered table-hover table-bg table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th width="60">ID</th>
+					<th width="90">发行量</th>
+					<th width="90">发行时间</th>
+					<th width="90">发行人</th>
+					<th width="90">状态</th>
+					<th width="100">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="list" id="vo">
+				<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value="<{$vo.id}>"></th>
+					<td><{$vo.id}></td>
+					<td><{$vo.addnum}></td>
+					<td><{$vo.addtime|date="Y-m-d H:i",###}></td>
+					<td><{$vo.adduser}></td>
+					<td>正常</td>
+					<td>--</td>
+				</tr>
+				</volist>
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>
+
+
+</block>
+
+<block name="js"> <script type="text/javascript"
+	src="__LIB__/lib/jquery/1.9.1/jquery.min.js"></script> <script
+	type="text/javascript" src="__LIB__/lib/layer/2.1/layer.js"></script> <script
+	type="text/javascript" src="__LIB__/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript"
+	src="__LIB__/lib/My97DatePicker/WdatePicker.js"></script> <script
+	type="text/javascript"
+	src="__LIB__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="__HUI__/js/H-ui.js"></script> <script
+	type="text/javascript" src="__HUI__/js/H-ui.admin.js"></script> <script
+	type="text/javascript">
+$(function(){
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 6, "desc" ]],//默认第几个排序
+		//"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		 // {"orderable":false,"aTargets":[0,6]}// 制定列不参与排序
+		]
+	});
+	$('.table-sort tbody').on( 'click', 'tr', function () {
+		if ( $(this).hasClass('selected') ) {
+			$(this).removeClass('selected');
+		}
+		else {
+			table.$('tr.selected').removeClass('selected');
+			$(this).addClass('selected');
+		}
+	});
+});
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-查看*/
+function member_show(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*用户-停用*/
+function member_stop(obj,id){
+	layer.confirm('确认要停用吗？',function(index){
+		$.post("<{:U('Tool/Index/stop_member')}>",{id:id},function(e){
+			$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe6e1;</i></a>');
+			$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+			$(obj).remove();
+			layer.msg('已停用!',{icon: 5,time:1000});
+		});
+
+	});
+}
+
+/*用户-启用*/
+function member_start(obj,id){
+	layer.confirm('确认要启用吗？',function(index){
+		$.post("<{:U('Tool/Index/stop_member')}>",{id:id},function(e){
+			$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a>');
+			$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+			$(obj).remove();
+			layer.msg('已启用!',{icon: 6,time:1000});
+		});
+	});
+}
+/*用户-编辑*/
+function member_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.post("<{:U('Tool/Index/del_member')}>",{id:id},function(e){
+			$(obj).parents("tr").remove();
+			layer.msg('已删除!',{icon:1,time:1000});
+		});
+	});
+}
+</script> </block>

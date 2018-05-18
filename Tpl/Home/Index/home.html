@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大雞大利</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,minimal-ui"><!-- viewport 后面加上 minimal-ui 在safri 体现效果 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">		<!-- iphone safri 全屏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">	<!-- iphone safri 状态栏的背景颜色 -->
+    <meta name="apple-mobile-web-app-title" content="一文鸡蛋">		<!-- iphone safri 添加到主屏界面的显示标题 -->
+    <meta name="format-detection" content="telphone=no, email=no">	<!-- 禁止数字识自动别为电话号码 -->
+    <meta name="renderer" content="webkit">				<!-- 启用360浏览器的极速模式(webkit) -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="true">		<!-- 是针对一些老的不识别viewport的浏览器，列如黑莓 -->
+    <meta name="MobileOptimized" content="320">			<!-- 微软的老式浏览器 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">	<!-- 禁止百度转码 -->
+    <meta name="screen-orientation" content="portrait">	<!-- uc强制竖屏 -->
+    <meta name="browsermode" content="application">		<!-- UC应用模式 -->
+    <meta name="full-screen" content="yes">				<!-- UC强制全屏 -->
+    <meta name="x5-orientation" content="portrait">		<!-- QQ强制竖屏 -->
+    <meta name="x5-fullscreen" content="true">			<!-- QQ强制全屏 -->
+    <meta name="x5-page-mode" content="app">			<!-- QQ应用模式 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-TileColor" content="#000"> 		<!-- Windows 8 磁贴颜色 -->
+    <meta name="msapplication-TileImage" content="icon.png">	<!-- Windows 8 磁贴图标 -->
+    <link rel="Shortcut Icon" href="__PUBLIC__/fuguiji/favicon.ico">		<!-- 浏览器tab图标 -->
+    <link rel="apple-touch-icon" href="__PUBLIC__/fuguiji/images/icon.jpg">				<!-- iPhone 和 iTouch，默认 57x57 像素，必须有 -->
+    <link rel="apple-touch-icon" sizes="72x72" href="__PUBLIC__/fuguiji/images/icon.jpg">	<!-- iPad，72x72 像素  -->
+    <link rel="apple-touch-icon" sizes="114x114" href="__PUBLIC__/fuguiji/images/icon.jpg">	<!-- Retina iPhone 和 Retina iTouch，114x114 像素 -->
+
+    <link rel="stylesheet" href="__PUBLIC__/fuguiji/css/reset.css">
+    <link rel="stylesheet" href="__PUBLIC__/fuguiji/css/style.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/home/popup.css">
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/home/home.css">
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/loign/login.css">
+	
+	<style>
+		.gray { 
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    
+    filter: grayscale(100%);
+	
+    filter: gray;
+}
+	</style>
+	
+</head>
+<body>
+<div id="page" class="page">
+    <div class="home-page home">
+        <!--滚动公告-->
+        <div class="notice"> <em>点我查看完整公告</em>
+            <div> <span>规则更新通知：</span> </div>
+        </div>
+        <div class="userBox"> <img class="bg" src="__PUBLIC__/fuguiji/images/farm/userBox.png" alt="">
+            <section style="line-height: 59px;">
+                <div class="myheadImg" style="background-image: url(__PUBLIC__/fuguiji/images/home/portrait/portrait-man.png);"></div>
+                <!--todo: 两个button不要换行-->
+                <!--todo: 按钮带提示标志 添加.tips-->
+                <!--
+				<button class="chickmail tips"></button>
+                <button class="gamseet"></button>
+				-->
+                <div class="item1 clearfix">
+                    <div class="item-content">
+                        <p class="name"> </p>
+                        <i class="dataEdit"> </i>
+						<p class="sec round" style="position:relative; left:0; top:0; background-image:url(/Public/static/d.png);background-repeat:no-repeat;background-size: contain;
+    background-position: left center;"></p>
+						<p class="sec round" style="position:relative; left:0; top:0; background-image:url(/Public/static/j.png);background-repeat:no-repeat;background-size: contain;
+    background-position: left center;"></p>
+						
+                        <!--<p class="clm clm-l round"> </p>-->
+						
+                        <p class="clm clm-l round" style="position:relative; left:0; top:0; background-image:url(/Public/static/guankong.png);background-repeat:no-repeat;background-size: contain;
+    background-position: left center; "> 
+						</p>
+                        <p class="clm clm-r round" style="position:relative; left:0; top:0; background-image:url(/Public/static/cash.png);background-repeat:no-repeat;background-size: contain;
+    background-position: left center; "></p>
+						
+						<span class="gamseet" style="position:absolute; right:2.2rem;top:3rem"><img src="__PUBLIC__/fuguiji/images/farm/setting.png" width="30" alt=""></span>
+						<span id="clickMail" style="position:absolute; right:0;top:3rem"><img src="__PUBLIC__/fuguiji/images/farm/mail.png" width="30" alt=""></span>
+						
+					<!--	<button class="chickmail tips"></button>
+                <button class="gamseet"></button>-->
+						
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+        <section class="chart"> <img style="display: block" src="__PUBLIC__/fuguiji/images/home/title.png" alt="" class="chart-title"> <img src="__PUBLIC__/fuguiji/images/home/board_home.png" alt="" class="board">
+            <div id="LineChart" _echarts_instance_="1487564255011" style="-webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0);">
+                <div style="position: relative; overflow: hidden; width: 276px; height: 220px;">
+                    <div data-zr-dom-id="bg" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 276px; height: 220px; user-select: none;"></div>
+                    <canvas width="552" height="440" data-zr-dom-id="0" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 276px; height: 220px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                    <canvas width="552" height="440" data-zr-dom-id="_zrender_hover_" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 276px; height: 220px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                </div>
+                <span class="subtext">&nbsp;</span><span class="publicSubtext">数据加载中</span></div>
+            <button class="goTianE" id="goTianE" style="height:50px;">
+            	<!--<span>进入鸡场</span>-->
+            </button>
+			<!--
+             <button class="goTianE" style="width:45%;left:100%; height:40px; background-image:url('/Public/fuguiji/images/pop/goShop_btn.png')" onclick="location.href='<php>echo U('Index/order', array('token'=>$_SESSION['token']));</php>'">
+
+            </button>
+			-->
+        </section>
+        <div class="home-menus clearfix" style="width:100%;">
+            <!--todo 按钮选中效果添加.cur-->
+            <button class="changeCenter"></button>
+            <button class="log"></button>
+            <button class="PY"></button>
+            <button class="rule" ></button>
+			<span style="position: absolute;bottom: -5px;right: 0;z-index: -1;">
+				<img src="__PUBLIC__/fuguiji/images/farm/desktop.png" width="100%" alt="">
+			</span>
+        </div>
+    </div>
+    <div class="popup" id="notice" style="display:none;">
+        <div class="popfloor" style="height: 386.15px; top: 90.9249px;">
+            <div class="list-form1">
+                <div class="border-form">
+                    <ul class="notice_content">
+
+                        <li>
+                            <div class="none"></div>
+                            <div class="note-title">
+                            	<div class="tip">&nbsp;</div>
+                            	<div class="title">规则更新通知：</div>
+                            	<div class="date">2018.04.10</div>
+                            </div>
+                            <div class="note-context">
+                                <div style="">1、大雞大利游戏所有玩家都是300只母鸡起步，为什么有的人收获满满，有的人却碌碌无为！你想成为游戏中的超级玩家吗？希望小编整理的游戏攻略能对你起到帮助。。
+                                    2、游戏中的围栏可以抵挡来自野兽的攻击，玩家每推荐10个好友可以增加围栏等级一级，围栏共4级，每一级可以增加0.1%的生产率收获，四级攻击增加0.4%生产率收获。
+                                   
+                                    3、游戏中可以购买牧羊犬来提升自己田庄的生成率，初次拥有小牧羊犬需消耗100只母鸡。1级小牧羊犬可以提升0.05%的生产率，2级小牧羊犬可以提升0.10%生产率，3级小牧羊犬可以提升0.15%生产率，以此类推。小牧羊犬的最高等级为9级，满级的小牧羊犬共可以提升0.45%的生产率。
+小牧羊犬从注册算起，每隔30天可以免费升级一次，玩家也可以用母鸡直接升级牧羊犬，小牧羊犬的等级越高升级成功率越低，7~9级升级失败牧羊犬会将为1级。
+
+                                   4、小牧羊犬从注册的那天算起，每隔30天可以免费升级一次（免费升级的成功率和正常升级的成功率一致）。
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="popup-title">公告</div>
+            <a class="close-btn noticeBtn"></a>
+        </div>
+    </div>
+    <div class="popup" id="qiaobao" style="display:none;" >
+        <div class="popfloor" style="background:url(/Public/fuguiji/images/home/Panel.png); height:330px !important; margin-top:-150px; background-size:100% 100%">
+            <div class="list-form" style="background:none">
+                
+                <input class="xiugai" type="password" id="oldPwd" name="oldPwd" placeholder="旧密码" />
+				<input class="xiugai" type="password" id="newPwd" name="newPwd"  placeholder="新密码" />
+				<input class="xiugai" type="password" id="confirmpwd" name="confirmpwd"  placeholder="确认密码" />
+				<a style="margin: 0 auto; display: inline-block; text-align: center; margin-top: 20px;" onclick="changePwd()" href="javascript:void(0);"><img width="60%" src="/Public/fuguiji/images/pop/confirm.png" /></a>
+				
+            </div>
+            <a class="close-btn mailBtn"></a> </div>
+    </div>
+    <div class="popup" id="mail" style="display:none;">
+        <div class="popfloor">
+            <div class="list-form">
+                <div class="border-form">
+                    <ul>
+                        <li>
+                            <div class="none"></div>
+                            <div class="note-title">
+							<!--<div class="chick">&nbsp;</div>-->
+							<div class="title"></div>
+							<div class="date"></div></div>
+                            <div class="note-context"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="popup-title mail-title">收件箱</div>
+            <a class="close-btn mailBtn"></a> </div>
+    </div>
+    <div class="popup" id="gameRule" style="display:none;">
+        <div class="popfloor" style="background:url(/Public/fuguiji/images/home/floor1.png); background-size:100% 100%;">
+            <div class="list-form" style="padding:0;width: 90%;left: 5%;">
+                <div class="border-form">
+                    <ul>
+                        <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">1</div>
+                                    <div class="kd type"></div>
+                                </div>
+                                <div>开地： 点击开地再点击要开的地上，母鸡数量满足条件就可以开地成功（青地300，金地3000）。</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">2</div>
+                                    <div class="zy type"></div>
+                                </div>
+                                <div> 增养：增养就是把仓库里母鸡放进地中，选择增养工具，点击已开的地，弹出对话框输入增养数量 点击确定 完成增种。</div>
+                            </div>
+                        </li>
+						<!--
+                        <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">3</div>
+                                    <div class="fh type"></div>
+                                </div>
+                                <div>收获：选择要收获且已开的地，收获出鸡蛋。（若收获地中到达最大数量上限而鸡蛋没有用完，可再次到其他地中收获）。</div>
+                            </div>
+                        </li>
+						-->
+                        <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">4</div>
+                                    <div class="sh type"></div>
+                                </div>
+                                <div>收获：选择收获工具 点击要收获的地中 将地里的鸡蛋扣除开地最低额度全部收回到仓库里。</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">6</div>
+                                    <div class="ds type"></div>
+                                </div>
+                                <div> 打扫：进入好友农场选择打扫工具，为好友打扫可以获得相应的鸡蛋回到仓库。
+</div>
+                            </div>
+                        </li>
+
+                          <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">7</div>
+                                    <div class="wl type"></div>
+                                </div>
+                                <div>围栏：围栏可以抵挡野兽攻击，总共四级，每一级可以围栏可以抵挡0.1%的损失。
+
+
+</div>
+                            </div>
+                        </li>
+                            <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">8</div>
+                                    <div class="xg type"></div>
+                                </div>
+                                <div>牧羊犬有9个等级，通过升级牧羊犬可以提高每鸡蛋生母鸡的数量。
+
+
+</div>
+                            </div>
+                        </li>
+                            <li>
+                            <div class="rule">
+                                <div>
+                                    <div class="mun">9</div>
+                                    <div class="egg1 type"></div>
+                                </div>
+                                <div>系统每次拆分完之后会会根据地里所养殖的母鸡数量生产相应数量的鸡蛋。当鸡蛋产生时方格上会冒出鸡蛋泡泡。每天您需要点击泡泡让鸡蛋放入仓库否则当天生产的鸡蛋会被第二天所生产的鸡蛋覆盖。
+
+
+</div>
+                            </div>
+                        </li>
+                        <!--
+                        <li>
+                          <div class="rule">
+                            <div>
+                              <div class="mun">6</div>
+                              <div class="ds type"></div>
+                            </div>
+                            <div>进入好友农场，选择打扫工具，在游戏屏幕中点击后，会有扫把扫地的动画，如果好友今日收获母鸡，为好友打扫可以获得相应的母鸡回到仓库。</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="rule">
+                            <div>
+                              <div class="mun">7</div>
+                              <div class="wl type"></div>
+                            </div>
+                            <div>围栏可以抵挡野兽攻击，总共四级，每一级围栏可以抵挡0.1%的攻击损失。</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="rule">
+                            <div>
+                              <div class="mun">8</div>
+                              <div class="xg type"></div>
+                            </div>
+                            <div>牧羊犬设置9个等级，通过升级小狗等级可以提升每日鸡蛋生蛋的数量。</div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="rule">
+                            <div>
+                              <div class="mun">9</div>
+                              <div class="egg type"></div>
+                            </div>
+                            <div>系统每次拆分完后，会根椐方格里所种的鸡蛋数量产生相应数量的母鸡，当母鸡产生时方格上方会冒出母鸡泡泡。每天您需要点击泡泡让母鸡进入仓库，否则当天产生的母鸡会被第二天的母鸡覆盖。</div>
+                          </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <a class="close-btn ruleBtn"></a> </div>
+    </div>
+    <div class="popup" id="portrait" style="display:none;">
+        <div class="popfloor">
+            <div class="list-form" style="height: 320px;">
+                <div class="border-form">
+                    <div class="portrait">
+                        <div data-attr="1"><i></i></div>
+		<div class="gray" data-attr="2"><i></i></div>
+		<div class="gray" data-attr="3"><i></i></div>
+		<div class="gray" data-attr="4"><i></i></div>
+		<div class="gray" data-attr="5"><i></i></div>
+		<div class="gray" data-attr="6"><i></i></div>
+                        <!--<div>&nbsp;</div>
+                        <div>&nbsp;</div>-->
+                        <!--<div>&nbsp;</div>
+                        <div>&nbsp;</div>-->
+                    </div>
+                </div>
+            </div>
+            
+            <a class="close-btn portraitBtn"></a> <a class="confirm-btn selectBtn"></a> </div>
+    </div>
+    <div class="alert"  id="gameSet" style="display:none;">
+        <div class="game-set">
+            <div class="on bgmusic-btn"><a class="on bgmusic-ball"></a></div>
+            <div class="on sound-btn"><a class="on sound-ball"></a></div>
+            <a class="close-btn gameSetBtn"></a> 
+            <a class="only-confirm logoutBtn" style="width: 60%; height: 20%; top: 56%;"></a>
+            <a id="secBtnClick" class="secBtn" style="width: 60%; height: 20%; top: 55%;"></a>
+        </div>
+    </div>
+    <div class="alert"  id="changePassword" style="display:none;">
+        <div class="password-board">
+            <div class="context">
+                <div>
+                    <input type="password" id="code0" name="oldPassword" placeholder="请输入验证码"/>
+                </div>
+                <input class="yanzhengma" id="btnSendCode" type="button" value="获取验证码" onClick="sendMessage()" />
+                <div>
+                    <input type="password" id="highpass" name="newPassword" placeholder="请输入二级密码"/>
+                </div>
+                <p style="color:red;font-size: .8rem">*二级密码至少6位，应同时包含英文字母，数字</p>
+            </div>
+            <a class="close-btn closePasswordBtn"></a> <a class="only-confirm confirmChangeBtn" href="javascript:void(0);" onclick="changeHighPass()"></a> </div>
+    </div>
+    <div class="alert"  id="chickMarket" style=" display:none;">
+        <div class="alert-board">
+            <div class="context">
+                <div class="icon"></div>
+                <div class="text">敬请期待</div>
+            </div>
+            <a class="only-confirm"></a> </div>
+    </div>
+    <div class="alert alert-msg"  id="alertMsg" style="display:none;">
+        <div class="alert-board msg-board">
+            <div class="context">
+                <div class="text">您填写的信息有误，请注意检查~</div>
+            </div>
+            <a class="only-confirm"></a> </div>
+    </div>
+</div>
+
+<section class="shade" style="display: none;">
+    <!--todo:我的商城-->
+    <div class="content storage shops" style="display: none">
+        <div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> <img
+                src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png"
+                                                                                               class="title-r" alt=""> <em>商城</em>
+        </div>
+        <i class="close"></i><i class="bottom"></i>
+        <ul class="show">
+            <!--todo：列表项固定-->
+            <li class="number"><i class="ico chick"></i>
+                <div class="content">
+                    <p class="name">鸡蛋</p>
+                    <em id="animalPrice"></em>
+                    <em class="chicksNum"></em></div>
+                <button class="redListBtn" id="buyAnimal"><span>购买一只</span></button>
+            </li>
+            <li class="number"><i class="ico egg"></i>
+                <div class="content">
+                    <p class="name">饲料</p>
+                    <em id="feedProce"></em>
+                    <em class="eggsNum"></em></div>
+                <button class="redListBtn" id="buyFeed"><span>购买一袋</span></button>
+            </li>
+
+            <li class="number"><i class="ico machine"></i>
+                <div class="content">
+                    <p class="name">帮好友买鸡蛋</p>
+                    <em id="actricePrice"></em>
+                    <em class="eggsNum"></em></div>
+                <button class="redListBtn" id="buyPrice"><span>购买一只</span></button>
+            </li>
+			<li class="number"><i class="ico machine"></i>
+                    <div class="content">
+                        <p class="name">购买母鸡</p>
+                        <em id="actricePrice">市场价/个</em>
+                        <em class="eggsNum"></em></div>
+                    <button class="redListBtn" id="goumaijidan"><span>去购买</span></button>
+                </li>
+
+    </div>
+
+    <div class="content friend-list" style="display:none;">
+        <div class="title" style="color: #fff;font-size: 22px;background: #beec53;font-weight: bold;text-align: center;width: 33%;margin: 3px auto;border-radius: 9px;text-shadow: 0px 0px 10px green;"><em>好友列表</em>
+        </div>
+        <i class="close"></i><i class="bottom"></i>
+        <ul class="show">
+        </ul>
+        <!--<button class="yellowBtn" id="quickClean"><span>一键打扫</span></button>-->
+       <button class="emw-code emw-open"><span>我的二维码</span></button>
+            <button class="yellowBtn" id="count"><span>直推人数</span></button>
+    </div>
+</section>
+<!--通用弹层-->
+<div class="login-alert login-alert-msg" id="xxx" style="display:none;">
+    <div class="login-alert-board msg-board">
+        <div class="context">
+            <div class="text">这里是你自定义的内容</div>
+        </div>
+        <a class="only-confirm"></a>
+    </div>
+</div>
+<!--好友列表-->
+<!--<section class="shade" style="display:none;">-->
+    <!---->
+<!--</section>-->
+<!--游戏规则弹层-->
+<!--<div class="popup" id="gameRule" style="display:none;">-->
+    <!--<div class="popfloor" style="height: 386.15px; top: 90.9249px;">-->
+        <!--<div class="list-form">-->
+            <!--<div class="border-form">-->
+                <!--<ul>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">1</div>-->
+                                <!--<div class="kd type"></div>-->
+                            <!--</div>-->
+                            <!--<div>点击开地，点击要开发的地块上，只要鸡蛋数量够就开地成功（金地3000只鸡蛋，普通地300只鸡蛋），否则开地失败。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">2</div>-->
+                                <!--<div class="zy type"></div>-->
+                            <!--</div>-->
+                            <!--<div>增种就是把仓库里的鸡蛋放进鸡蛋圈,选择增种工具，点击已经开垦鸡蛋圈，弹出增种对话框，输增加鸡蛋的数量，点击“确定”，这块地上完成增种。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">3</div>-->
+                                <!--<div class="fh type"></div>-->
+                            <!--</div>-->
+                            <!--<div>选择收割工具，点击您要收割的方格，随所您所有的母鸡都会在该方格收割成鸡蛋（如果母鸡数量超过方格种鸡蛋上限，收割后多出来的母鸡将继续保留在仓库中，您可以在其它方格收割）。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">4</div>-->
+                                <!--<div class="sh type"></div>-->
+                            <!--</div>-->
+                            <!--<div>选择收获工具，点击要收获的地块鸡蛋群，该鸡蛋群的数量除了最低限度外的其他鸡蛋都会收回到您的仓库里，完成收获。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">5</div>-->
+                                <!--<div class="fhj type"></div>-->
+                            <!--</div>-->
+                            <!--<div>仓库的母鸡可以随时放入收割机，而收割机里的母鸡可以随时取出。放进收割机的母鸡可以在每天拆分时产生收益，收益比例等于每天拆分比例。超级收割机生产的是鸡蛋，您可以每天在机器里点击收获鸡蛋，鸡蛋将进入仓库。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">6</div>-->
+                                <!--<div class="ds type"></div>-->
+                            <!--</div>-->
+                            <!--<div>进入好友农场，选择打扫工具，在游戏屏幕中点击后，会有扫把扫地的动画，如果好友今日收获母鸡，为好友打扫可以获得相应的母鸡回到仓库。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">7</div>-->
+                                <!--<div class="wl type"></div>-->
+                            <!--</div>-->
+                            <!--<div>围栏可以抵挡野兽攻击，总共四级，每一级围栏可以抵挡0.1%的攻击损失。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">8</div>-->
+                                <!--<div class="xg type"></div>-->
+                            <!--</div>-->
+                            <!--<div>小狗设置9个等级，通过升级小狗等级可以提升每日鸡蛋生蛋的数量。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="rule">-->
+                            <!--<div>-->
+                                <!--<div class="mun">9</div>-->
+                                <!--<div class="egg type"></div>-->
+                            <!--</div>-->
+                            <!--<div>系统每次拆分完后，会根椐方格里所种的鸡蛋数量产生相应数量的母鸡，当母鸡产生时方格上方会冒出母鸡泡泡。每天您需要点击泡泡让母鸡进入仓库，否则当天产生的母鸡会被第二天的母鸡覆盖。</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="popup-title rule-title">游戏规则说明</div>-->
+        <!--<a class="close-btn ruleBtn"></a>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="filter">
+  <!--  <div class="tuiguang"><input id="tuiguang" value ></input></div> -->
+	<div id="code">
+		<textarea id="tuiguang" cols="20" rows="2" style="width:100%;background-color:orange" value>
+  </textarea>
+	</div>
+
+	<div>
+
+	<textarea id="tuiguang" style="background-color:orange;color:#fff; width:100%;height:30px; margin-top:70px;" row="2" value ></textarea>
+
+    <img src="/Public/fuguiji/images/home/emw.png" alt="" class="code">
+    <section class="chart">
+        <button class="emw-code emw-close"><span>返回</span></button>
+    </section>
+</div>
+<script src="__PUBLIC__/fuguiji/js/jquery-1.7.2.min.js"></script>
+<script src="__PUBLIC__/fuguiji/js/echarts.js"></script>
+<script src="__PUBLIC__/fuguiji/js/function.js"></script>
+<script src="__PUBLIC__/fuguiji/js/user.js"></script>
+<script src="__PUBLIC__/fuguiji/js/global.js"></script>
+<script src="__PUBLIC__/fuguiji/js/home.js"></script>
+<script src="//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<!-- 获取验证码 -->
+<script type="text/javascript">
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    var codeLength = 6;//验证码长度
+    function sendMessage() {
+        curCount = count;
+        var dealType; //验证方式
+        var uid=$("#uid").val();//用户uid
+        if ($("#phone").attr("checked") == true) {
+            dealType = "phone";
+        }
+        else {
+            dealType = "email";
+        }
+        $.ajax({
+            url:host + "/User/getUser",
+            type:"post",
+            data:{token:userInfo.token},
+            dataType:"json",
+			async: false,
+            success:function(data){
+                if(data.errcode != 10000){
+                    alertMsg(data.msg);
+                }else{
+                    $.ajax({
+                        url:host + "/Tool/sendCode",
+                        type:"post",
+                        data:{mobile:data.result[0].account},
+                        dataType:"json",
+            			async: false,
+                        success:function(data){
+                            if(data.errcode != 10000){
+                                alertMsg(data.msg);
+                            }else{
+                            	//设置button效果，开始计时
+                                $("#btnSendCode").attr("disabled", "true");
+                                $("#btnSendCode").val( + curCount + "秒再获取");
+                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#btnSendCode").removeAttr("disabled");//启用按钮
+            $("#btnSendCode").val("重新发送验证码");
+        }
+        else {
+            curCount--;
+            $("#btnSendCode").val( + curCount + "秒再获取");
+        }
+    }
+</script>
+
+<script>
+    $(function (){
+			$.ajax({
+            url:host + "/User/getUser",
+            type:"post",
+            data:{token:userInfo.token},
+            dataType:"json",
+			async: false,
+            success:function(data){
+                if(data.errcode != 10000){
+                    alertMsg(data.msg);
+                }else{
+                   sessionStorage.setItem('userInfo',JSON.stringify(data.result[0]));
+                   var data = data.result[0];
+                   //console.log(data.icon>=0&&data.icon<5)
+                   if (!(data.icon>=0&&data.icon<5)) {
+                   		data.icon = 1;
+                   }
+                   if (!data.icon) {
+                   	data.icon = 1;
+                   }
+                   $('.myheadImg').css('background-image','url(__PUBLIC__/fuguiji/images/home/portrait/user_icon'+data.icon+'.png)');				  
+                }
+            }
+        });
+		var u = 'http://' + window.location.hostname + '/index.php/Index/index/user/'+userInfo.account;
+//		console.log($('#code'))
+		$('#code').qrcode(u);
+		$('#tuiguang').val(u);
+		$.ajax({
+            url:host + "/All/getNotice",
+            type:"get",
+            dataType:"json",
+			async: false,
+            success:function(data){
+                if(data.errcode != 10000){
+                    alertMsg(data.msg);
+                }else{
+//              	data.result[0] = data.result[0];
+//              	data.result[1] = data.result[0];
+//              	data.result[2] = data.result[0];
+//              	data.result[3] = data.result[0];
+//                	console.log(data.result)
+                	var htm = '',
+                		not_title = '';
+//              	<li>
+//                          <div class="none"></div>
+//                          <div class="note-title"><div class="tip">&nbsp;</div><div class="title">规则更新通知：</div><div class="date">2016.11.29</div></div>
+//                          <div class="note-context">
+//                              <div style="">
+//                                  </div>
+//                          </div>
+//                      </li>
+                	$.each(data.result, function(i,n) {
+                		htm += '<li><div class="none"></div><div class="note-title"><div class="tip">&nbsp;</div><div class="title" style="background-color:transparent;font-size:1rem;width:65%;padding:0;">'
+                		+n.title+'：</div><div class="date">'
+                		+n.date+'</div></div><div class="note-context"><div style="">'
+                        +n.content+'</div></div></li>';
+                        not_title += n.title;
+//              		console.log(n);
+                	});
+//                	console.log(htm)
+//                	console.log($('#notice .notice_content').html(htm));
+//					$('.note-title .title').text(data.result[0].title);
+//					$('.note-title .date').text(data.result[0].date);
+//					$('.notice div span').text(data.result[0].title);
+					$('.notice div span').text(not_title);
+//					$('.note-context div').text(data.result[0].content);
+                }
+
+            }
+        });
+        $.ajax({
+            url:host + "/Tool/getPrice",
+            type:"post",
+            data:{token:userInfo.token},
+            dataType:"json",
+			async: false,
+            success:function(data){
+                if(data.errcode != 10000){
+                    alertMsg(data.msg);
+                }else{
+//                chicken = {"data":data.result};
+                    sessionStorage.setItem('market', JSON.stringify(data));
+                }
+
+            }
+        });
+//		$.ajax({
+//          url:host + "/User/getResources",
+//          type:"post",
+//          data:{token:userInfo.token},
+//          dataType:"json",
+//          success:function(data){
+//              if(data.errcode != 10000){
+//                  alertMsg(data.msg);
+//              }else{
+//                  sessionStorage.setItem('userInfo', JSON.stringify(data.result[0]));
+//                  //$('#num-in').text(data.result[0].feed);
+//					$('.clm-r').text(data.result[0].animal_count);
+//					$('.clm-l').text(data.result[0].currency);
+//              }
+//          }
+//      });
+		$('.selectBtn').click(function(){
+			var activeIcon = 0
+			$.each($('#portrait .portrait').children(), function(i,n) {
+				var item=$(n).children();
+				if ($(item).hasClass('active')) {
+					activeIcon = i+1;
+					return false;
+				}
+			});
+			$('.myheadImg').css('background-image','url(__PUBLIC__/fuguiji/images/home/portrait/user_icon'+activeIcon+'.png)');
+			 $("#portrait").hide();
+			$.ajax({
+				url:host + "/User/updatehead",
+				type:"post",
+				data:{
+					token:userInfo.token,
+					icon:activeIcon
+				},
+				dataType:"json",
+				async: true,
+				success:function(data){
+					console.log(data);
+					if(data.errcode != 10000){
+						alertMsg(data.msg);
+					}else{
+						console.log(data)
+						$.each($('#portrait .portrait').children(), function(i,n) {
+							$(n).children("i").removeClass("active");
+						});
+					}
+
+				}
+			});
+		})
+		$('.logoutBtn').click(function(){
+			$.ajax({
+				url:host + "/User/outLogin",
+				type:"post",
+				data:{token:userInfo.token},
+				dataType:"json",
+				async: true,
+				success:function(data){
+					if(data.errcode != 10000){
+						alertMsg(data.msg);
+					}else{
+	//                chicken = {"data":data.result};
+						var url = "<{:U('Index/index')}>";
+						window.location.href=url;
+					}
+
+				}
+			});
+		});
+        $("#secBtnClick").click(function(){
+            $("#changePassword").show();
+        });
+        var marketData = JSON.parse(sessionStorage.getItem('market'));
+        var  rateList = [0,222,125,223,123,0,0];
+        var myChart = echarts.init(document.getElementById('LineChart'));
+        var option = {
+//      	dataRange:{
+////      		show:true,
+//          	splitNumber:10
+//          },
+            grid:{
+                x:16, y:40, x2:16, y2:20,
+                borderWidth:'0',
+                borderColor:'transparent'
+            },
+            axis:{
+                axisLine:{
+                    lineStyle:{
+                        color:'#ffcfba'
+                    }
+                }
+            },
+//	                tooltip : {
+//	                    trigger: 'axis'
+//	                },
+//	            calculable : true,
+            calculable:false,//控制
+            xAxis : [
+                {
+                    type : 'category',
+                    axisLine:{
+                        lineStyle:{
+                            color:'#ffcfba',
+                            width:3
+                        }
+                    },
+                    axisTick:{
+                        inside:true,
+                        lineStyle:{
+                            color:'#ffcfba',
+                            width:1,
+                        }
+                    },
+                    splitLine:{//间隔线
+//	                            show:false,
+                        lineStyle:{
+                            color:'#ffcfba',
+//	                                type:'dashed',
+                            type:'dotted'
+                        }
+                    },
+                    boundaryGap : false,
+                    //todo:X轴
+//                    data : ['07.03','07.04','07.05','07.06','07.07','07.08','07.09']
+                    data : marketData.date
+                    // data : dates
+                }
+            ],
+            yAxis : [
+                {
+                	 splitNumber:1,
+                	 min:1,
+                	 max:5
+//                  show:false,
+                }
+            ],
+
+            series : [
+                //线段一
+                {
+                    name:'基础利率：',
+                    type:'line',
+                    smooth:true,//平滑
+                    itemStyle: {
+                        normal: {
+                            label:{//标记
+                                show:true,
+                                textStyle:{
+                                    color:'#FF0000',
+                                    fontSize:'14',
+                                    width:'1'
+                                }
+                            },
+                            lineStyle:{
+                                type:'dotted'
+                            },
+                            areaStyle: {
+                                color:'rgba(254,135,80,0.15)',
+                                type: 'default'
+                            }
+                        }
+                    },
+                    //todo：X轴对应数据
+//                    data:[180, 400, 100, 300, 460, 400, 500],
+                     data : marketData.price,
+                   // data: marketData.baseprice,
+                    symbol:'emptyCircle'
+                },
+                 {
+                    name:'基础利率',
+                    type:'line',
+                    smooth:true,//平滑
+                    itemStyle: {
+                        normal: {
+                            label:{//标记
+                                show:true,
+                                textStyle:{
+                                    color:'#436EEE',
+                                    fontSize:'14',
+                                    width:'2'
+                                }
+                            },
+                            lineStyle:{
+
+                                type:'dashed'
+                            },
+                            areaStyle: {
+                                color:'rgba(254,135,80,0.15)',
+                                type: 'default'
+                            }
+                        }
+                    },
+                    //todo：X轴对应数据
+//                    data:[180, 400, 100, 300, 460, 400, 500],
+
+                    data: marketData.baseprice,
+                     symbol:'emptyCircle'
+                }
+            ]
+       };
+        // console.log(marketData.price);
+        myChart.setOption(option);
+        $('#LineChart').append('<span class="subtext">最新利率：'+marketData.price[marketData.price.length-1]+'</span>');
+        $('#LineChart').append('<span class="publicSubtext">基础利率：'+marketData.baseprice[marketData.price.length-1]+'%</span>');
+
+
+
+        $(".ruleBtn").click(function(){
+            $("#gameRule").hide();
+        });
+        $(".only-confirm").click(function(){
+            $("#chickMarket").hide();
+        });
+        $(".yellowBtn").click(function(){
+            var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+            var token = userInfo.token;
+            var url = "<{:U('Index/farm')}>?token="+token;
+            window.location.href=url;
+        });
+        $("#goTianE").click(function(){
+            var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+            var token = userInfo.token;
+            var url = "<{:U('Index/farm')}>?token="+token;
+            window.location.href=url;
+        });
+    });
+</script>
+<script type="text/javascript">
+    function changePwd(){
+    	var oldPwd=$("#oldPwd").val();
+    	var newPwd=$("#newPwd").val();
+        var confirmpwd=$("#confirmpwd").val();
+        if(!oldPwd){
+        	alertMsg('请输入原密码');
+        	return;
+        }
+        if(!newPwd){
+        	alertMsg('请输入新密码');
+        	return;
+        }
+        if(!confirmpwd){
+        	alertMsg('请输入确认密码');
+        	return;
+        }
+        if(newPwd!=confirmpwd){
+        	alertMsg('两次输入的密码不一致');
+        	return;
+        }
+    	$.ajax({
+			url:host + "/User/changePwd2",
+			type:"post",
+			data:{
+				token:userInfo.token,
+				oldPwd:oldPwd,
+                newPwd:newPwd
+			},
+			dataType:"json",
+			async: true,
+			success:function(data){
+				if(data.errcode != 10000){
+					alertMsg(data.msg);
+				}else{
+					alertMsg('密码修改成功');
+				}
+
+			}
+		});
+    }
+
+    function changeHighPass(){
+    	var code=$("#code0").val();
+    	var highpass=$("#highpass").val();
+        if(!code){
+        	alertMsg('请输入验证码');
+        	return;
+        }
+        if(!highpass){
+        	alertMsg('请输入二级密码');
+        	return;
+        }
+    	$.ajax({
+			url:host + "/User/changeHighPass",
+			type:"post",
+			data:{
+				token:userInfo.token,
+				code:code,
+				highpass:highpass
+			},
+			dataType:"json",
+			async: true,
+			success:function(data){
+				if(data.errcode != 10000){
+					alertMsg(data.msg);
+				}else{
+					alertMsg('密码修改成功');
+				}
+
+			}
+		});
+    } 
+</script>
+<script type="text/javascript">
+    $(function () {
+        //处理页面显示业务
+        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        if(!userInfo.nickname) userInfo.nickname = "注册会员";
+        $('.item-content .name').text(userInfo.nickname);
+        //$('.q-num .red').text(userInfo.money);
+		$('.q-num .red').text(userInfo.currency);
+        if(!userInfo.currency) userInfo.currency = 0;
+      //  $('.item-content .round:eq(0)').text(userInfo.currency);
+
+        if(!userInfo.animal_count) userInfo.animal_count = 0;
+//      $('.item-content .round:eq(1)').text(22);
+        $('.item-content .round:eq(1)').text(userInfo.all_animal);
+		$('.item-content .round:eq(2)').text(userInfo.proportion);
+        $('.item-content .round:eq(3)').text(userInfo.yuanbao);
+		
+		$("#clickMail").click(function () {
+			
+			var htm = '';
+            $("#mail").show();
+			$.ajax({
+				url:host + "/User/myemail",
+				type:"post",
+				data:{token:userInfo.token},
+				dataType:"json",
+				async: true,
+				success:function(data){
+					if(data.errcode != 10000){
+						alertMsg(data.msg);
+					}else{
+
+
+						$.each(data.result,function(i,n){
+							htm += '<li><div class="title"><div class="none"></div><div class="note-title">'
+							+n.msg+'</div><div class="date" style="text-align:right"> '
+							+n.create_time+'</div></div><div class="note-context"></div></li>';
+
+							console.log(n)
+						})
+			          $("#mail").show();
+			          console.log($('#mail .border-form>ul').html())
+			          $('#mail .border-form>ul').html(htm);
+
+//						html = '<li>
+//                          <div class="title">首次注册得1只小鸡蛋</div>
+//                          <div class="date">2017.02.16</div></div>
+//                      </li>
+//						';
+						console.log(data)
+					}
+
+				}
+			});
+			
+        });
+
+        $(".gamseet").click(function () {
+        	var htm = '';
+          $("#gameSet").show();
+        });
+        $(".close-btn").click(function () {
+            $(this).parent().parent().hide();
+        });
+      $(".chickmail").click(function () {
+		/*$.ajax({
+				url:host + "/User/getWallet",
+				type:"post",
+				data:{token:userInfo.token},
+				dataType:"json",
+				async: true,
+				success:function(data){
+					if(data.errcode != 10000){
+						alertMsg(data.msg);
+					}else{
+						//$('.q-num .red').text(data.result[0].money);
+						$('.q-num .red').text(data.result[0].currency);
+						$('.cz-con .cz').empty();
+						$('.cz-con .tk').empty();
+						$(data.result[0].recharge).each(function(){
+
+							$('.cz').append("<li><span>充值"+this.prize+"元</span><span>"+this.date+"</span></li>");
+						});
+						$(data.result[0].drawing).each(function(){
+
+							$('.tk').append("<li><span>提现"+this.prize+"元</span><span>"+this.date+"</span></li>");
+						});
+					}
+
+				}
+			});*/
+          $("#qiaobao").show();
+      });
+        $(".myheadImg").click(function () {
+								
+			$.ajax({
+				url: host + "/User/getUser",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+				dataType: "json",
+				success: function(data) {
+					if(data.errcode == 10000) {
+						var enclosure_lev=parseInt(data.result[0].enclosure_lev);
+						var curritem;
+						$.each($('#portrait .portrait').children(), function(i,n) {
+							var item=$(n);
+							var cnt=parseInt($(item).data('attr'));
+							if (cnt<=enclosure_lev) {
+							//
+								$(item).removeClass("gray");
+							}else{
+								$(item).addClass("gray");
+							}
+							if(cnt==parseInt(data.result[0].icon)){
+								curritem=item;
+							}
+						});
+						$(curritem).children("i").addClass("active");	
+					} else {
+						alertMsg(data.msg)
+					}
+				},
+				error: function(data) {
+					console.log(data);
+				}
+
+			});	
+            $("#portrait").show();
+        });
+
+        $(".portrait>div").click(function () {
+				var cnt=parseInt($(this).data("attr"));
+						var item=$(this);
+		$.ajax({
+				url: host + "/User/getUser",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+				dataType: "json",
+				success: function(data) {
+					if(data.errcode == 10000) {
+						var enclosure_lev=parseInt(data.result[0].enclosure_lev);
+						if(enclosure_lev+1<cnt){
+							alertMsg("等级不够，不能解锁");
+						}else{
+							$(item).siblings().children("i").removeClass("active");  //清除其他i元素的选中样式						
+							$(item).children("i").addClass("active");   //添加当前i元素的样式							
+						}
+					} else {
+						alertMsg(data.msg)
+					}
+				},
+				error: function(data) {
+						console.log(data);
+				}
+
+			});			 
+        });
+		
+		
+		
+		
+		$('.dataEdit').click(function(){
+			$('#qiaobao').show();
+		});
+        $('.chickmail').click(function(){
+            var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+            var token = userInfo.token;
+//          return;
+            var url = "<{:U('Index/user')}>?token="+token;
+            window.location.href=url;
+        });
+		$('#goumaijidan').click(function(){
+			window.location.href = "./buy.html";
+		});
+    });
+</script>
+<!--<audio src="__PUBLIC__/fuguiji/music/bg.mp3" preload="" loop></audio>
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>大雞大利</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,minimal-ui">
+		<!-- viewport 后面加上 minimal-ui 在safri 体现效果 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- iphone safri 全屏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- iphone safri 状态栏的背景颜色 -->
+		<meta name="apple-mobile-web-app-title" content="">
+		<!-- iphone safri 添加到主屏界面的显示标题 -->
+		<meta name="format-detection" content="telphone=no, email=no">
+		<!-- 禁止数字识自动别为电话号码 -->
+		<meta name="renderer" content="webkit">
+		<!-- 启用360浏览器的极速模式(webkit) -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="HandheldFriendly" content="true">
+		<!-- 是针对一些老的不识别viewport的浏览器，列如黑莓 -->
+		<meta name="MobileOptimized" content="320">
+		<!-- 微软的老式浏览器 -->
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<!-- 禁止百度转码 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- uc强制竖屏 -->
+		<meta name="browsermode" content="application">
+		<!-- UC应用模式 -->
+		<meta name="full-screen" content="yes">
+		<!-- UC强制全屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- QQ应用模式 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="msapplication-TileColor" content="#000">
+		<!-- Windows 8 磁贴颜色 -->
+		<meta name="msapplication-TileImage" content="icon.png">
+		<!-- Windows 8 磁贴图标 -->
+		<link rel="Shortcut Icon" href="__PUBLIC__/fuguiji/favicon.ico">
+		<!-- 浏览器tab图标 -->
+		<link rel="apple-touch-icon" href="__PUBLIC__/fuguiji/images/icon.jpg">
+		<!-- iPhone 和 iTouch，默认 57x57 像素，必须有 -->
+		<link rel="apple-touch-icon" sizes="72x72" href="__PUBLIC__/fuguiji/images/icon.jpg">
+		<!-- iPad，72x72 像素  -->
+		<link rel="apple-touch-icon" sizes="114x114" href="__PUBLIC__/fuguiji/images/icon.jpg">
+		<!-- Retina iPhone 和 Retina iTouch，114x114 像素 -->
+		<link rel="stylesheet" href="__PUBLIC__/fuguiji/css/reset.css">
+		<link rel="stylesheet" href="__PUBLIC__/fuguiji/css/style.css">
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/loign/login.css">
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/home/popup.css">
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/home/home.css">
+		<link type="text/css" rel="stylesheet" href="__PUBLIC__/fuguiji/css/shop/shop.css">
+		<style>
+			nav {
+				position: absolute;
+				top: 3rem;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body class="first_body" style=";">
+		<div id="page" class="page">
+			<style>
+				.Bubble.notEgg>i {
+					opacity: 1;
+					-webkit-transform: scale(1, 1);
+					-moz-transform: scale(1, 1);
+					-ms-transform: scale(1, 1);
+					-o-transform: scale(1, 1);
+					transform: scale(1, 1);
+					pointer-events: initial;
+					background-image: url('__PUBLIC__/fuguiji/images/farm/yida.png');
+				}
+			</style>
+			<div class="chicken-page">
+				<!--滚动公告
+        <div class="notice" id="show-notice"><em>(点我查看完整公告)</em>
+            <p><span>规则更新通知：</span></p>
+        </div>-->
+				<div class="userBox">
+					<img class="bg" src="__PUBLIC__/fuguiji/images/farm/userBox.png" alt="">
+					<section style="line-height: 59px;">
+						<div class="headImg" style="background-image: url(&quot;__PUBLIC__/fuguiji/images/home/portrait/portrait-man.png&quot;);"></div>
+						<!--todo: 两个button不要换行-->
+						<!--todo: 按钮带提示标志 添加.tips-->
+						<!--<button class="market library1"></button>-->
+						<!--<button class="friend market library2"></button>-->
+						<button class="friend"></button>
+						<button class="library"></button>
+						<div class="item clearfix">
+							<div class="item-content">
+								<p class="name" style="width:60%;">姓名</p>
+								<p class="dataEdit" style="width:40%;font-size:0.66666667rem;top:0.5rem;height:1.2rem;background-image:url(/Public/static/guankong.png);background-repeat:no-repeat;background-size: contain;
+    background-position: left center;text-align:right;"></p>
+								<!--todo:超出位数限制时 添加.round-->
+								<!--鸡蛋-->
+								<p class="clm clm-l round">0.3</p>
+								<!--母鸡-->
+								<p class="clm clm-r round">315.0</p>
+							</div>
+						</div>
+					</section>
+					<!--<img src="__PUBLIC__/fuguiji/images/farm/l-vine.png" alt="" class="l-vine vine"> <img src="__PUBLIC__/fuguiji/images/farm/r-vine.png" alt="" class="r-vine vine">-->
+					<em class="btn back"></em> <em class="btn refresh"></em></div>
+				<!--<div style="height: 60px;display: none;" class="watchman">-->
+					<!--<img style="display: none;" src="__PUBLIC__/fuguiji/images/farm/watchman.png" alt="" class="l-vine vine">-->
+				<!--</div>-->
+				<div class="fieldBox">
+					<div class="middleware">
+					<span id="getEggThrough" class="Bubble" style="display: none;width: 60px;height: 60px;left: 40%;top: 40%;"><i style="top: 50%;opacity: 1;"></i></span>
+						<ul class="field clearfix" style="padding-top:2rem; background-repeat:repeat-y;height:30rem;">
+							<!--<img class="floor-bg" src="__PUBLIC__/fuguiji/images/farm/floor.png" alt="">-->
+							<!--todo 等级：lv1，lv2，lv3，lvMax-->
+                            <li class="green" style="height:40px; clear:both; width:80%; color:#fff; font-weight:bold; text-align:center;">
+								<section class="Bubble" style=" margin-top:10px;"><i></i>您的余额:<php>echo $user['currency'];</php>,元宝:<php>echo $user['yuanbao'];</php></section>
+							</li>
+                            
+                            <php>foreach($list as $vo){</php>
+							<li class="green" style="height:90px;">
+								<section class="Bubble"><i></i><img src="<php>echo $vo['goods_imgurl']</php>" style="height:90px;width:90px;"/></section>
+							</li>
+                            <li class="green" style="height: 40px;">
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i><php>echo $vo['goods_name']</php></section>
+							</li>
+                            <li class="green" style="height: 40px;">
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i><php>echo $vo['goods_price']</php></section>
+							</li>
+                            <li class="green goodsbuy" style="height: 40px;" goods_id="<php>echo $vo['id']</php>" pay_name='余额支付'>
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i>余额购</section>
+							</li>
+                            <li class="green goodsbuy" style="height: 40px;" goods_id="<php>echo $vo['id']</php>" pay_name='元宝支付'>
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i>元宝购</section>
+							</li>
+                            <php>}</php>
+                            
+                            <li class="green prepage" style="height: 40px;float:left;" goods_id="<php>echo $vo['id']</php>">
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i>上一页</section>
+							</li>
+                            <li class="green nextpage" style="height: 40px;float:right;" goods_id="<php>echo $vo['id']</php>">
+								<section class="Bubble" style="margin-top:10px; color:#fff;"><i></i>下一页</section>
+							</li>
+							<!--<li class="farm-bar">
+								<img src="__PUBLIC__/fuguiji/images/farm/weiyang.png" alt="" class="bar-icon wy-icon" id="feed">
+								<img src="__PUBLIC__/fuguiji/images/farm/shidan.png" alt="" class="bar-icon sd-icon" id="harvest">
+								<div class="num"><img src="__PUBLIC__/fuguiji/images/farm/shiliao.png" alt=""><span id="num-in"></span></div>
+							</li>-->
+						</ul>
+						
+					</div>
+				</div>
+				<div class="desktop" style="display:none;">
+					<img src="__PUBLIC__/fuguiji/images/farm/desktop.png" alt="">
+					<div class="action_chicken_egg">
+						<button class="reclaim"></button>
+						<button class="Up"></button>
+						<button class="hatch"></button>
+						<button class="harvest"></button>
+						<button class="machine"></button>
+					</div>
+				</div>
+				<!--<div class="home-menus clearfix" style="width:100%;">
+					<button class="rule"></button>
+					<button class="shop"></button>
+					<button class="home home-menu"></button>
+					<button class="log"></button>
+					<button class="PY"></button>
+				</div>-->
+				<div class="dog" style="top: 300px;display: none;">
+					<div>
+						<!--todo 小牧羊犬等级对应src数字-->
+						<img class="dog_lev_icon" src="__PUBLIC__/fuguiji/images/farm/dog/00.gif" alt=""></div>
+				</div>
+			</div>
+
+			<section class="shade" style="display: none;">
+				<!--todo：没有地块购买小牧羊犬-->
+				<div class="content min confirm show_buyDog_prompt" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p><em class="chicken-num"></em>您还没有开地<br> 确认是否购买牧羊犬
+						<!--<span>成功几率为<em class="odds">　</em>。</span>-->
+					</p>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo: .confirm 为带确定取消的输入框
+                  .min 为小弹窗
+                  .content 为子窗口
+        -->
+				<!--todo：增养-->
+				<div class="content min confirm Up" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>输入增养数量</p>
+					<label for="">
+                <input type="number" id="input_add_num" value="1" min="1">
+            </label>
+					<br>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo：增养-->
+				<div class="content min confirm hatch" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>输入增养数量</p>
+					<label for="">
+                <input type="number" id="input_hatch_num"  value="1" min="1">
+            </label>
+					<br>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo: 收获提示确认-->
+				<div class="content min reap" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>恭喜收获 <em></em> 只鸡蛋</p>
+					<br>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo: 仓库母鸡数量不够-->
+				<div class="content min NoChick" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>仓库鸡蛋数量不够</p>
+					<br>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo: 还没有收割机-->
+				<div class="content no-mchine mchine" style="display: none;">
+					<div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> <img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>收割机</em>
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<div class="show"><img src="__PUBLIC__/fuguiji/images/window/mchine/no-mchine.png" alt="">
+						<div>
+							<!--<p>你还没有收割机呢</p>-->
+							<p>你还没有收割机呢</p>
+							<p>把鸡蛋放进收割机能获得<br> 更高的收益哦~
+							</p>
+						</div>
+					</div>
+					<button class="yellowBtn"><span>推荐<em>50</em>位好友即可获取</span></button>
+					<button class="yellowBtn" id="chickBuyMchine"><span>消耗<em>1000</em>鸡蛋马上获取</span></button>
+				</div>
+				<!--todo: 有收割机-->
+				<div class="content has-mchine mchine" style="display: none">
+					<div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt="">
+						<img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>收割机</em>
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<div class="show"><img src="__PUBLIC__/fuguiji/images/window/mchine/has-mchine.png" alt="">
+						<div>
+							<p><em class="machine_has_egg">0</em> 只鸡蛋正在增养...</p>
+							<p>把鸡蛋放进收割机能获得<br> 更高的收益哦~
+							</p>
+						</div>
+					</div>
+					<button class="yellowBtn push" style="width: 30%"><span>放入鸡蛋</span></button>
+					<button class="yellowBtn pull" style="width: 30%;left: 96%;bottom: 5.144rem"><span>取出鸡蛋</span></button>
+					<!--todo:有母鸡按钮带提示标志 添加i.tips-->
+					<button class="yellowBtn getChick"><i class="tips"></i><span>收获母鸡</span></button>
+					<!--<button class="yellowBtn pull"><span>取出鸡蛋</span></button>-->
+					<!--todo:没有母鸡-->
+					<button class="grayBtn no_chick" style="display:none"><span>还没有可以收获的母鸡</span></button>
+				</div>
+				<!--todo：放入鸡蛋-->
+				<div class="content min confirm push-egg" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>输入鸡蛋数量</p>
+					<label for="">
+                <input class="push_egg_num" type="number" value="100" min="100">
+            </label>
+					<br>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo：取出鸡蛋-->
+				<div class="content min confirm pull-egg" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>取出鸡蛋数量</p>
+					<label for="">
+		                <input class="pull_egg_num" type="number" value="100" min="100">
+		            </label>
+					<br>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i>
+				</div>
+				<!--todo：提现-->
+				<div class="content min confirm catchCashBox" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>输入提现数量(50的倍数)</p>
+					<label for="">
+		                <input class="catchCashNum" type="number" value="50" min="50">
+		            </label>
+					<br>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i>
+				</div>
+				<!--todo：消耗母鸡获取收割机-->
+				<div class="content min confirm buySuper" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>将消耗1000只<i class="icon-check"></i>获取收割机</p>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo：消耗母鸡升级牧羊犬-->
+				<div class="content min confirm UpDog" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>
+						将消耗<em class="chicken-num">100</em>只<i class="icon-check"></i><br>
+						<span>成功率<em class="odds"></em>
+						</span>%<br>
+						<span class="text_opstion"></span></p>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo：消耗母鸡获取30天一键打扫-->
+				<div class="content min confirm buyKeyCleanDay" style="display: none">
+					<div class="flex-box">
+						<div class="f-l"></div>
+						<div class="flex"></div>
+						<div class="f-r"></div>
+					</div>
+					<p>
+						将消耗<em class="chicken-num">100</em>只<i class="icon-check"></i><br>
+						<span>购买一键打扫。</span>继续吗？ </p>
+					<button class="buffBtn"><span>取消</span></button>
+					<button class="yellowBtn"><span>确认</span></button>
+					<i class="bottom"></i></div>
+				<!--todo:好友列表-->
+				<div class="content friend-list" style="display: none">
+					<div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> <img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>好友列表</em>
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<ul class="show">
+
+					</ul>
+					<!--<button class="yellowBtn" id="quickClean"><span>一键打扫</span></button>-->
+					<!--<button class="emw-code emw-open" id="invitation_friend"><span>我的二维码</span></button>-->
+					<button style="margin: 0 auto; " class="yellowBtn one_key" id="count"><span>一键打扫</span></button>
+				</div>
+				<!--todo: 公告弹窗-->
+				<div id="notice" class="content notice" style="display: none">
+					<div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> <img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>公告</em>
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<ul class="show">
+
+					</ul>
+				</div>
+
+				<!--todo:我的仓库-->
+				<div class="content storage" id="storage-a" style="display: none">
+					<div class="title">
+						<!--<img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> 						<img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> 						<img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>我的仓库</em>-->
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<ul class="show">
+						<!--todo：列表项固定-->
+						<li class="text"><i class="ico chick"></i>
+							<div class="content">
+								<p class="name">母鸡</p>
+								<em class="info" id="fuguiji">24552只</em>
+							</div>
+							<button class="redListBtn" id="gotoUp"><span>去增养</span></button>
+						</li>
+						<li class="text"><i class="ico egg"></i>
+							<div class="content">
+								<p class="name">鸡蛋</p>
+								<!--<em>25只</em>-->
+								<em class=" info" id="jidan">123</em>
+							</div>
+							<button class="redListBtn" id="hatch"><span>去增养</span></button>
+						</li>
+						<li class="text"><i class="ico fence"></i>
+							<div class="content">
+								<p class="name">木栅栏</p>
+								<!--<p class="name fencLevel">帮好友买母鸡</p>-->
+								<p class="info"><em id="jihuoma">升级</em></p>
+							</div>
+							<button class="redListBtn fenceLevel"><span>升级</span></button>
+						</li>
+
+						<li class="text library-dog"><i class="ico haDog"></i>
+							<div class="content">
+								<!--<p class="name">牧羊犬<em class="grade">Lv.1</em></p>-->
+								<p class="name">牧羊犬<em class="grade dogLevel"></em></p>
+								<p class="info">等级越高，母鸡的产量越高哦</p>
+							</div>
+							<button class="redListBtn"><span>购买</span></button>
+						</li>
+						
+						<li class="text"><i class="ico clean"></i>
+							<div class="content">
+								<p class="name">一键打扫</p>
+								<p class="info">打扫所有好友田庄，期限30日</p>
+							</div>
+							<button class="redListBtn keyCleanDay"><span>剩余0日</span></button>
+						</li>
+						</div>
+
+				
+						<!--<li class="text"><i class="ico moneyPacket"></i>
+							<div class="content">
+								<p class="name">奖励仓库</p>
+								<p class="info tixianmoney">提现所获得的收益</p>
+							</div>
+							
+						</li>-->
+					</ul>
+					
+				</div>
+						</ul>
+						<ul class="show" style="top: 6rem;">
+							<!--todo：列表项固定-->
+							自己填充数据
+
+						</ul>
+					</div>
+
+				</div>
+
+				<!--todo:我的商城-->
+				<div class="content storage shops" style="display: none">
+					<div class="title"><img src="__PUBLIC__/fuguiji/images/window/title-bg.png" class="title-c" alt=""> <img src="__PUBLIC__/fuguiji/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/fuguiji/images/window/right_y.png" class="title-r" alt=""> <em>商城</em>
+					</div>
+					<i class="close"></i><i class="bottom"></i>
+					<ul class="show">
+						
+						<li class="number"><i class="ico chick"></i>
+							<div class="content">
+								<p class="name">母鸡</p>
+								<em id="animalPrice">100/只</em>
+								<em class="chicksNum"></em></div>
+							<button class="redListBtn" id="buyAnimal"><span>购买一只</span></button>
+						</li>
+						<li class="number"><i class="ico egg"></i>
+							<div class="content">
+								<p class="name">饲料</p>
+								<em id="feedProce">10/袋</em>
+								<em class="eggsNum"></em></div>
+							<button class="redListBtn" id="buyFeed"><span>购买一袋</span></button>
+						</li>
+						<!--<li class="text"><i class="ico fence"></i>-->
+						<!--<div class="content">-->
+						<!--&lt;!&ndash;<p class="name">木栅栏</p>&ndash;&gt;-->
+						<!--<p class="name fenceLevel">激活码</p>-->
+						<!--<em id="feedProce">25袋</em>-->
+						<!--<p class="info" ><em id="actricePrice">10</em></p>-->
+						<!--</div>-->
+						<!--<button class="redListBtn fenceLevel"><span>购买</span></button>-->
+						<!--</li>-->
+						<li class="number"><i class="ico machine"></i>
+							<div class="content">
+								<p class="name">帮好友买母鸡</p>
+								<em id="actricePrice">100/个</em>
+								<em class="eggsNum"></em></div>
+							<button class="redListBtn" id="buyPrice"><span>购买一个</span></button>
+						</li>
+						<li class="number"><i class="ico machine"></i>
+							<div class="content">
+								<p class="name">购买鸡蛋</p>
+								<em id="actricePrice">市场价/个</em>
+								<em class="eggsNum"></em></div>
+							<button class="redListBtn" id="goumaijidan"><span>去购买</span></button>
+						</li>
+						<!--<li class="text library-dog"><i class="ico haDog"></i>-->
+						<!--<div class="content">-->
+						<!--&lt;!&ndash;<p class="name">牧羊犬<em class="grade">Lv.1</em></p>&ndash;&gt;-->
+						<!--<p class="name">牧羊犬<em class="grade dogLevel"></em></p>-->
+						<!--<p class="info">等级越高，母鸡的产量越高哦</p>-->
+						<!--</div>-->
+						<!--<button class="redListBtn"><span>购买</span></button>-->
+						<!--</li>-->
+						<!--<li class="text haveSuperIncubator"><i class="ico machine"></i>-->
+						<!--<div class="content">-->
+						<!--<p class="name">收割机</p>-->
+						<!--<p class="info">收割机增养鸡蛋，产量更高哦</p>-->
+						<!--</div>-->
+						<!--<button class="redListBtn"><span>获得</span></button>-->
+						<!--</li>-->
+						<!--<li class="text"><i class="ico clean"></i>-->
+						<!--<div class="content">-->
+						<!--<p class="name">一键打扫</p>-->
+						<!--<p class="info">打扫所有好友田庄，期限30日</p>-->
+						<!--</div>-->
+						<!--<button class="grayListBtn keyCleanDay"><span>剩余0日</span></button>-->
+						<!--</li>-->
+					</ul>
+				</div>
+
+				<!--todo:注冊-->
+				<div class="register" style="display: none;height: 100%"><img src="__PUBLIC__/fuguiji/images/window/register.png" alt=""></div>
+				<!--todo：邀請-->
+				<div class="invite" style="display: none;height: 100%"><img src="__PUBLIC__/fuguiji/images/window/invite.png" alt=""></div>
+			</section>
+
+			<!--仓库弹层-->
+			<div class="login-alert login-alert-msg" id="alert-div" style="display:none;">
+				<div class="login-alert-board msg-board">
+					<div class="context">
+						<div class="text">这里是你自定义的内容</div>
+					</div>
+					<div class="btn">
+						<button class="yellowBtn fl" id="only-confirm">确认</button>
+						<button class="yellowBtn fr" id="only-concell">取消</button>
+					</div>
+				</div>
+			</div>
+			<!--请求失败返回的弹层-->
+			<div class="login-alert login-alert-msg" id="cleanFriend_alert" style="display:none;">
+				<div class="login-alert-board msg-board">
+					<div class="context">
+						<div class="text">这里是你自定义的内容</div>
+					</div>
+					<a class="only-confirm"></a>
+				</div>
+			</div>
+			<!--请求成功返回的弹层-->
+			<div class="login-alert login-alert-msg" id="returnSucc_alert" style="display:none;">
+				<div class="login-alert-board msg-board">
+					<div class="context">
+						<div class="text">这里是你自定义的内容</div>
+					</div>
+					<a class="only-confirm"></a>
+				</div>
+			</div>
+			<!--通用弹层-->
+			<div class="login-alert login-alert-msg" id="xxx" style="display:none;">
+				<div class="login-alert-board msg-board">
+					<div class="context">
+						<div class="text">这里是你自定义的内容</div>
+					</div>
+					<a class="only-confirm"></a>
+				</div>
+			</div>
+			<!--游戏规则弹层-->
+			<div class="popup" id="gameRule" style="display:none;">
+				<div class="popfloor">
+					<div class="list-form">
+						<div class="border-form">
+							<ul>
+								<li>
+									<div class="rule">
+										<div>
+											<div class="mun">1</div>
+											<div class="kd1 type"></div>
+										</div>
+										<div>会员激活后会送一只母鸡，点击购买饲料(10个母鸡苗)，然后喂食母鸡，母鸡喂食24小时后产苗</div>
+									</div>
+								</li>
+								<li>
+									<div class="rule">
+										<div>
+											<div class="mun">2</div>
+											<div class="zy2 type"></div>
+										</div>
+										<div>24小时后需要您手动去拾取母鸡苗哦，拾取完记得在次施肥呀，这样才是合理的安排</div>
+									</div>
+								</li>
+								<li>
+									<div class="rule">
+										<div>
+											<div class="mun">3</div>
+											<div class="fh1 type"></div>
+										</div>
+										<div>激活会员需要的激活币，施肥母鸡需要的饲料，甚至是母鸡，都可以去商城购买哦</div>
+									</div>
+								</li>
+								<li>
+									<div class="rule">
+										<div>
+											<div class="mun">4</div>
+											<div class="sh1 type"></div>
+										</div>
+										<div>一个账号只能购买10只母鸡哦</div>
+									</div>
+								</li>
+								<li>
+									<div class="rule">
+										<div>
+											<div class="mun">5</div>
+											<div class="fhj1 type"></div>
+										</div>
+										<div>您的激活币，饲料等都可以在钱包里看到哦</div>
+									</div>
+								</li>
+						
+							</ul>
+						</div>
+					</div>
+					<div class="popup-title rule-title">游戏规则说明</div>
+					<a class="close-btn ruleBtn"></a>
+				</div>
+			</div>
+			<div class="alert alert-msg" id="alertMsg" style="display:none;">
+				<div class="alert-board msg-board">
+					<div class="context">
+						<div class="text">您填写的信息有误，请注意检查~</div>
+					</div>
+					<a class="only-confirm"></a>
+				</div>
+			</div>
+		</div>
+		<div class="filter">
+			<div id="code">
+				<textarea id="tuiguang" cols="20" rows="2" style="width:100%;background-color:orange" value>
+  </textarea>
+
+			</div>
+			<!--<div class="tuiguang"><input type="text" id="tuiguang" value=""></div>
+    <img src="/Public/fuguiji/images/home/emw.png" alt="" class="code">-->
+			<section class="chart">
+				<button class="emw-code emw-close"><span>确认</span></button>
+			</section>
+		</div>
+		<!--<audio src="__PUBLIC__/fuguiji/music/bg.mp3" preload="" loop></audio>-->
+		<script src="__PUBLIC__/fuguiji/js/jquery-1.7.2.min.js"></script>
+		<script src="__PUBLIC__/fuguiji/js/function.js"></script>
+		<script src="__PUBLIC__/fuguiji/js/user.js"></script>
+		<script src="__PUBLIC__/fuguiji/js/global.js"></script>
+		<!--<script src="__PUBLIC__/fuguiji/js/farm.js?v=8.0"></script>-->
+		<script src="__PUBLIC__/fuguiji/js/dog_move.js"></script>
+		<script src="//cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+		<script>
+			var userAction = ''; //确认用户操作的是开地还是增养及其他
+			var gameConfig = null;
+			//				var userInfo = null;
+			//			var currentField; //选中的地
+			getGameConfig();
+
+			function getGameConfig() {
+				$.ajax({
+					url: host + "/User/gameconfig",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data.errcode != 10000) {
+							//							getGameConfig();
+						} else {
+							gameConfig = data.result;
+							console.log(gameConfig);
+						}
+					}
+				});
+			}
+			$(function() {
+				$.ajax({
+					url: host + "/User/getUser",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data.errcode != 10000) {
+							alertMsg(data.msg);
+						} else {
+							//							userInfo = data.result[0];
+							sessionStorage.setItem('userInfo', JSON.stringify(data.result[0]));
+							userInfo = data.result[0];
+							//							console.log(data.result[0])
+							$('#num-in').text(data.result[0].feed);
+							$('.clm-r').text(data.result[0].all_animal);
+							$('.clm-l').text(data.result[0].currency);
+							//delete
+							//							data.result[0].enclosure_lev = 4;
+							//变头像
+							if(!(userInfo.icon >= 0 && userInfo.icon < 5)) {
+								userInfo.icon = 1;
+							}
+							if(!userInfo.icon) {
+								userInfo.icon = 1;
+							}
+							$('.headImg').css('background-image', 'url(__PUBLIC__/fuguiji/images/home/portrait/user_icon' + userInfo.icon + '.png)')
+							$('.item-content .dataEdit').text(userInfo.shouyi);
+							//栅栏的等级
+							$('.field li').each(function(i, n) {
+								if($(n).find(".chicken-box").size()) {
+									$(n).addClass('lv' + data.result[0].enclosure_lev)
+								}
+							})
+							//能不能收获
+							//							$('.field li').each(function(i,n){
+							//								if ($(n).find(".chicken-box").size()) {
+							//									$(n).addClass('lv'+data.result[0].enclosure_lev)
+							//								}
+							//							})
+							//牧羊犬的等级
+							//delete
+							//							data.result[0].dog_lev = 4;
+							console.log($('.dog .dog_lev_icon')[0]);
+							//							data.result[0].dog_lev=1;
+							if(data.result[0].dog_lev) {
+								$('.dog').show();
+								$('.dog .dog_lev_icon').attr('src', $('.dog .dog_lev_icon')[0].currentSrc.slice(0, -5) + data.result[0].dog_lev + '.gif')
+							}
+						}
+					}
+				});
+
+			})
+			var u = 'http://' + window.location.hostname + '/index.php/Index/index/user/' + userInfo.account;
+			$('#tuiguang').val(u);
+			$('#code').qrcode(u);
+			/**
+			 * 市场
+			 */
+			$('.market').click(function() {
+				$('#market-a .show').empty();
+				$('.shade').show();
+				$('#market-a').show();
+				$.ajax({
+					url: host + "/User/marketList",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data.errcode != 10000) {
+							alertMsg(data.msg);
+						} else {
+							var res = data.result;
+							console.log(res);
+							$(res).each(function() {
+								var html = "<li class=\"text\"><i class=\"ico fence\"></i><div class=\"content\"><p class=\"name\">" + this.account + "</p><p class=\"name fenceLevel\">数量:" + this.number + "</p></div><button class=\"redListBtn buy\" id-data=\"" + this.id + "\"><span>抢购</span></button></li>";
+								$('#market-a .show').append(html);
+							});
+						}
+
+					}
+				});
+			});
+
+			$('.dan').click(function() {
+				$('.show').empty();
+				var keep = $(this).attr('data-tab');
+				if(keep == 1) {
+					$.ajax({
+						url: host + "/User/marketList",
+						type: "post",
+						data: {
+							token: userInfo.token
+						},
+						dataType: "json",
+						success: function(data) {
+							if(data.errcode != 10000) {
+								alertMsg(data.msg);
+							} else {
+								var res = data.result;
+								console.log(res);
+								$(res).each(function() {
+									var html = "<li class=\"text\"><i class=\"ico fence\"></i><div class=\"content\"><p class=\"name\">" + this.account + "</p><p class=\"name fenceLevel\">数量:" + this.number + "</p></div><button class=\"redListBtn \" id-data=\"" + this.id + "\"><span>抢购</span></button></li>";
+									$('#market-a .show').append(html);
+								});
+							}
+
+						}
+					});
+				} else {
+					$.ajax({
+						url: host + "/User/getMyDeal",
+						type: "post",
+						data: {
+							token: userInfo.token
+						},
+						dataType: "json",
+						success: function(data) {
+							if(data.errcode != 10000) {
+								alertMsg(data.msg);
+							} else {
+								var res = data.result;
+								console.log(res);
+								$(res).each(function() {
+									var html = "<li class=\"text\"><i class=\"ico fence\"></i><div class=\"content\"><p class=\"name\">" + this.account + "</p><p class=\"name fenceLevel\">数量:" + this.number + "</p></div><button class=\"redListBtn \"><span>已锁定</span></button></li>";
+									$('#market-a .show').append(html);
+								});
+							}
+
+						}
+					});
+				}
+			});
+			$(".buy").live("click", ".buy", function() {
+				var id = $(this).attr('id-data');
+				var thas = this;
+				$.ajax({
+					url: host + "/User/buyEgg",
+					type: "post",
+					data: {
+						token: userInfo.token,
+						id: id
+					},
+					dataType: "json",
+					success: function(data) {
+						if(data.errcode != 10000) {
+							alertMsg(data.msg);
+						} else {
+							alertMsg("锁定成功,请联系卖家");
+							$(thas).addClass('grayListBtn');
+							$(thas).removeClass('redListBtn');
+							$(thas).removeClass('buy');
+						}
+					}
+				});
+			});
+
+			var chicken = {};
+			getUserFarm()
+
+			function getUserFarm() {
+				return;
+				$.ajax({
+					//				url: host + "/User/getUserAnimal",
+					url: host + "/User/getUserfarm",
+					type: "post",
+					data: {
+						token: userInfo.token
+					},
+					async: false,
+					dataType: "json",
+					success: function(data) {
+						if(data.errcode != 10000) {
+							alertMsg(data.msg);
+						} else {
+							console.log(data.result)
+							//                chicken = {"data":data.result};
+							sessionStorage.setItem('animal', JSON.stringify(data.result));
+						}
+
+					}
+				});
+			}
+			$.ajax({
+				url: host + "/All/getNotice",
+				type: "get",
+				dataType: "json",
+				async: false,
+				success: function(data) {
+					if(data.errcode != 10000) {
+						alertMsg(data.msg);
+					} else {
+						$('#show-notice p span').text(data.result[0].title);
+						$('.note-title .date').text(data.result[0].date);
+						$('.notice div span').text(data.result[0].title);
+						$('.note-context div').text(data.result[0].content);
+					}
+
+				}
+			});
+			$(function() {
+				$('.pay_name').click(function(e){
+					$('.pay_name').attr('checked', 'false');
+					$('.pay_name').css('color', '#fff');
+					$(this).attr('checked', 'true');
+					$(this).css('color', '#c00');
+					$('.goodsbuy').attr('pay_name',$(this).attr('pay_name'));
+					if($(this).attr('pay_name') == '余额支付'){
+						$('.goodsbuy').find('section').html('余额购');
+					}else{
+						$('.goodsbuy').find('section').html('元宝购');
+					}
+				});
+				$('.goodsbuy').click(function(e){
+					title = $(this).find('section').html();
+					$(this).find('section').html('购买中...');
+					pay_type = $(this).attr('pay_name');
+					that = this;
+					$.ajax({
+						url: host + "/User/goods_orders",
+						type: "post",
+						data: {
+							token: userInfo.token,
+							goods_id: $(this).attr('goods_id'),
+							pay_name: pay_type
+						},
+						dataType: "json",
+						success: function(data) {
+							if(data.errorcode == 0) {
+								alert('您已经成功购买');								
+							} else {
+								alert(data.errormsg);
+							}
+							$(that).find('section').html(title);
+						}
+					});
+				});
+				$('.prepage').click(function(){
+					window.location.href = "<php>echo U('Index/order',array('token'=>$token,'page'=>($page - 1))); </php>";
+				});
+				$('.nextpage').click(function(e) {
+                	window.location.href = "<php>echo U('Index/order',array('token'=>$token,'page'=>($page + 1))); </php>";    
+                });
+				$(".refresh").click(function() {
+					window.location.reload();
+				});
+				$(".back").click(function() {
+					window.location.href="<php>echo U('Index/home'); </php>?token=<php>echo $token</php>";
+				});
+			});
+		</script>
+	</body>
+
+</html>
