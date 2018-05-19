@@ -71,48 +71,61 @@ class UserController extends CommonController
         }
     }
 
-    public function goods_orders()
-    {
+    public function goods_orders() {
+        $goodsId = I('post.goods_id');
+        $password = I('post.password');
+        $num = I('post.num');
+        $address = I('post.address');
+        $phone = I('post.phone');
+        $payName = I('post.pay_name');
         $user = M('member')->where(array(
             'id' => $this->userId
         ))->find();
-        if (empty($user['phone']) || empty($user['consignee_addr'])) {
+        if (empty($phone) || empty($address)) {
             die(json_encode(array(
-                'errorcode' => '4',
-                'errormsg' => '请先设置好您的电话和收货地址'
+                'errorcode' => '1',
+                'errormsg' => '请填写您的电话和收货地址'
             )));
         }
         $goods = M('goods')->where(array(
-            'id' => I('post.goods_id'),
-            'deleted' => 0,
-            'enable' => 1
+            'id' => $goodsId, 'deleted' => 0, 'enable' => 1
         ))->find();
-        if (! $goods) {
+        if (!$goods) {
             die(json_encode(array(
-                'errorcode' => '1',
+                'errorcode' => '2',
                 'errormsg' => '此商品不存在'
+            )));
+        }
+        if ($goods['stock'] < $num) {
+            die(json_encode(array(
+                'errorcode' => '3',
+                'errormsg' => '此商品库存不足'
             )));
         }
         $data['goods_id'] = $goods['id'];
         $data['goods_name'] = $goods['goods_name'];
         $data['goods_price'] = $goods['goods_price'];
-        $data['goods_qty'] = 1;
-        $data['order_amount'] = $goods['goods_price'] * $data['goods_qty'];
-        $data['pay_name'] = I('post.pay_name');
+        $data['goods_qty'] = $num;
+        $totalMoney = $goods['goods_price'] * $data['goods_qty'];
+        $totalMoney = $totalMoney + ($totalMoney * 0.1);
+        $data['order_amount'] = $totalMoney;
+        $data['pay_name'] = $payName;
         $data['member_id'] = $this->userId;
         $data['member_account'] = $user['account'];
-        $data['consignee_addr'] = $user['consignee_addr'];
-        $data['consignee_phone'] = $user['phone'];
+        $data['consignee_addr'] = $address;
+        $data['consignee_phone'] = $phone;
         $data['order_time'] = time();
         if ($data['pay_name'] == '余额支付') {
             if (($user['currency'] - $data['order_amount']) <= 0) {
                 die(json_encode(array(
-                    'errorcode' => '3',
+                    'errorcode' => '4',
                     'errormsg' => '您的余额不足'
                 )));
             }
             $dt = strtotime(date('Y-m-d 00:00:00', time()));
-            $amount = M('goods_orders')->where('member_id=' . $this->userId . ' and pay_name=\'余额支付\' and order_time>=' . $dt)->sum('order_amount');
+            $amount1 = M('goods_orders')->where('member_id=' . $this->userId . ' and pay_name=\'余额支付\' and order_time>=' . $dt)->sum('order_amount');
+            $amount2 = M('transfer_log')->where('userid=' . $this->userId . ' and type=2 and status=2 and create_time>=' . $dt)->sum('realprice');
+            $amount = $amount1 + $amount2;
             $greencount = M('user_farm')->where(array(
                 'userid' => $this->userId,
                 'type' => 1
@@ -123,21 +136,21 @@ class UserController extends CommonController
             ))->count();
             if ($greencount < 0 || $goldcount < 0) {
                 die(json_encode(array(
-                    'errorcode' => '3',
+                    'errorcode' => '5',
                     'errormsg' => '获取用户土地信息失败'
                 )));
             }
             $MaxAmount = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
             if ($data['order_amount'] + $amount > $MaxAmount) {
                 die(json_encode(array(
-                    'errorcode' => '3',
+                    'errorcode' => '6',
                     'errormsg' => '您当日最大剩余可交易量为' . ($MaxAmount - $amount)
                 )));
             }
         } else {
             if (($user['yuanbao'] - $data['order_amount']) <= 0) {
                 die(json_encode(array(
-                    'errorcode' => '3',
+                    'errorcode' => '7',
                     'errormsg' => '您的元宝不足'
                 )));
             }
@@ -163,7 +176,7 @@ class UserController extends CommonController
             )));
         } else {
             die(json_encode(array(
-                'errorcode' => '2',
+                'errorcode' => '8',
                 'errormsg' => '添加商品失败'
             )));
         }
@@ -1681,7 +1694,7 @@ class UserController extends CommonController
                     $amount = M('transfer_log')->where('userid=' . $this->userId . ' and type=1 and status=2 and create_time>=' . $dt)->sum('realprice');
                     $countMax = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
                     if ($countMax < $num + $amount) {
-                        $this->echoJson("您今天最多还可售卖 ".($countMax-$amount)."个{$this->SupValue}");
+                        $this->echoJson("您今天最多还可售卖 ".($countMax-$amount)."只{$this->SupValue}");
                     }
                 }
                 $transfer_percent = $farmcount == 15 ? 0 : $transfer_percent;

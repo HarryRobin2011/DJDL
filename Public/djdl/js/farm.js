@@ -720,13 +720,13 @@ $(function() {
 					$('.friend-list .show').html('');
 					$(res.friendlist).each(function () {
                         var BoolBlock = this.egg_parent_status==1?'hidden':'visible';
-                        var html = '<li style="height: 5.555556rem;"><div class="userBox" style="background-image: url(../../Public/fuguiji/images/home/portrait/portrait-man.png);top:29%"></div><div class="info" style="height: 50%;"><span class="name">'
+                        var html = '<li style="height: 5.555556rem;"><div class="userBox" style="background-image: url(../../Public/djdl/images/home/portrait/portrait-man.png);top:29%"></div><div class="info" style="height: 50%;"><span class="name" style="display: flex;">'
                             +this.nickname+'<img style="width: 45%;visibility:'
-                            +BoolBlock+';" src="../../Public/fuguiji/images/farm/stop_Clean.png"></span><p><i class="icon"></i><em>'
+                            +BoolBlock+';" src="../../Public/djdl/images/farm/stop_Clean.png"></span><p><i class="icon"></i><em>'
                             +this.all_rate+'只</em></p></div><button  style=" top: 29%;" data-egg-status="'
                             +this.egg_parent_status+'" data-id="'
-                            +this.id+'" class="redListBtn"><span>拜访</span></button><div style="position: absolute;top: 74%;font-size: 0.7rem;"><b><img style="vertical-align: middle; width: 22%;" src="../../Public/fuguiji/images/farm/info_then.png"></b><b style="-webkit-border-radius: 100px; -webkit-box-sizing: border-box;-moz-border-radius: 100px;background: #fffae4;border-radius: 100rem;padding: 0.15rem 0.15rem;color: #864714;margin-left: 0.3rem; box-sizing: border-box;"><img style="vertical-align: middle; width: 7%;" src="../../Public/fuguiji/images/farm/heder_then.png"><strong style="margin-left: 0.1rem;">'
-                            +this.realname+'</strong></b><b style="-webkit-border-radius: 100px; -webkit-box-sizing: border-box;-moz-border-radius: 100px;background: #fffae4;border-radius: 100rem;padding: 0.15rem 0.1rem;color: #864714;margin-left: 0.3rem;"><img style="vertical-align: middle; width: 7%;" src="../../Public/fuguiji/images/farm/phone_then.png"><strong style="margin-left: 0.1rem;">'
+                            +this.id+'" class="redListBtn"><span>拜访</span></button><div style="position: absolute;top: 74%;font-size: 0.7rem;"><b><img style="vertical-align: middle; width: 22%;" src="../../Public/djdl/images/farm/info_then.png"></b><b style="-webkit-border-radius: 100px; -webkit-box-sizing: border-box;-moz-border-radius: 100px;background: #fffae4;border-radius: 100rem;padding: 0.15rem 0.15rem;color: #864714;margin-left: 0.3rem; box-sizing: border-box;"><img style="vertical-align: middle; width: 7%;" src="../../Public/djdl/images/farm/heder_then.png"><strong style="margin-left: 0.1rem;">'
+                            +this.realname+'</strong></b><b style="-webkit-border-radius: 100px; -webkit-box-sizing: border-box;-moz-border-radius: 100px;background: #fffae4;border-radius: 100rem;padding: 0.15rem 0.1rem;color: #864714;margin-left: 0.3rem;"><img style="vertical-align: middle; width: 7%;" src="../../Public/djdl/images/farm/phone_then.png"><strong style="margin-left: 0.1rem;">'
                             +this.account+'</strong></b></div></li>';
                         $('.friend-list .show').append(html);
                     });

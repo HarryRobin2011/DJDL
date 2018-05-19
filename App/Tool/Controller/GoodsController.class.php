@@ -102,7 +102,7 @@ class GoodsController extends CommonController{
 				}
 		   		$this->error('文件上传有误');
 		   }else{
-				$dir = "/Public/fuguiji/images/goods/".date('Ymd',time())."/";
+				$dir = "/Public/djdl/images/goods/".date('Ymd',time())."/";
 				$pathname = date('YmdHis',time()).mt_rand(1000,9999).$_FILES['goods_imgurl']['name'];
 				
 				if(!is_dir('.'.$dir)){
@@ -183,7 +183,7 @@ class GoodsController extends CommonController{
 				break; 
 				}
 			   }else{
-					$dir = "/Public/fuguiji/images/goods/".date('Ymd',time())."/";
+					$dir = "/Public/djdl/images/goods/".date('Ymd',time())."/";
 					$pathname = date('YmdHis',time()).mt_rand(1000,9999).$_FILES['goods_imgurl']['name'];
 					
 					if(!is_dir('.'.$dir)){
