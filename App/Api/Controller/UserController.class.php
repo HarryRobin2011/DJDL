@@ -1776,7 +1776,7 @@ class UserController extends CommonController
 //                }
                 
 //                $farmcount = $greencount + $goldcount;
-                $transfer_percent = $farmcount >= 10 ? 0 : $transfer_percent;
+                $transfer_percent = $farmcount >= 15 ? 0 : $transfer_percent;
                 $money = $num * (1 + $transfer_percent);
                 if ($money > $usermsg['currency']) {
                     if(intval($usermsg['isadmin'])>0){
