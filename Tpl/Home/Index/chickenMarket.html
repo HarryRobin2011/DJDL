@@ -130,7 +130,7 @@
 
 </div>
 <!--<audio src="music/bg.mp3" preload="" loop></audio>-->
-<div class="alert"  id="changePassword" style="display:none;">
+<!--<div class="alert"  id="changePassword" style="display:none;">
 	<div class="password-board">
 		<div class="context" style="top: 18%;">
 			<p style="color:red;font-size: 1.2rem">二级验证</p>
@@ -139,9 +139,9 @@
 			</div>
 		</div>
 		<a class="close-btn closePasswordBtn"></a>
-		<a class="only-confirm confirmChangeBtn confirmChangeBtn1" style="left: -3%" href="javascript:void(0);" onclick="goodsBuy()"></a>
+		<a class="confirmChangeBtn confirmChangeBtn1" style="left: 9%" href="javascript:void(0);" onclick="goodsBuy()"></a>
 	</div>
-</div>
+</div>-->
 
 <section class="shade" style="display: none;">
 	<!--todo:我的商城-->
@@ -169,16 +169,17 @@
 			</li>
 		</ul>
 		<div class="showShopNum">
-			<p>
+			<p style="margin-bottom: 5px;">
 				<span>购买数量</span>
-				<span style="width: 140px;text-align: left;padding-left: 10px" class="amount_box">
-                    <a href="javascript:;" class="reduce reSty">-</a>
+				<span style="width: 140px;text-align: left;padding-left: 10px;margin-top: auto;" class="amount_box">
+                    <a href="javascript:void(0);" class="reduce reSty">-</a>
                     <input type="text" value="1" class="sum">
-                    <a href="javascript:;" class="plus">+</a>
+                    <a href="javascript:void(0);" class="plus">+</a>
                 </span>
 			</p>
-			<p><span>姓名</span> <input id="name" type="text" name="num"></p>
-			<p><span>手机号</span> <input id="phone" type="text" name="num"></p>
+			<p style="margin-bottom: 5px;"><span>手机号</span> <input id="phone" type="text" name="num"></p>
+			<p style="margin-bottom: 5px;"><span>收货地址</span> <input id="address" type="text" name="num"></p>
+			<p style="margin-bottom: 5px;"><span>二级密码</span> <input id="highpass" type="password" name="num"></p>
 		</div>
 		<div class="showShopNum">
 			<p style="color:red">*手续费是商品总额的10%</p>
@@ -204,7 +205,7 @@
 <script src="__PUBLIC__/fuguiji/js/global.js"></script>
 <!-- 获取验证码 -->
 <script type="text/javascript">
-    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
     var InterValObj; //timer变量，控制时间
     var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
@@ -267,9 +268,7 @@
     }
 
     //=================================================商品数量==============================================
-    var $plus = $('.plus'),
-        $reduce = $('.reduce');
-    $plus.click(function () {
+    $('.plus').click(function () {
         var $inputVal = $(this).prev('input'),
             $count = parseInt($inputVal.val())+1,
             $obj = $(this).parents('.amount_box').find('.reduce');
@@ -283,7 +282,7 @@
         }
     });
 
-    $reduce.click(function () {
+    $('.reduce').click(function () {
         var $inputVal = $(this).next('input'),
             $count = parseInt($inputVal.val())-1;
         if($inputVal.val()>1){
@@ -315,87 +314,54 @@
         $("#totalMoney").text(totalMoney.toFixed(2));
         $(".shade").show();
         $(".shapsBg").show();
-
     });
+
     $("#btnBuy").click(function(){
-        var name = $("#name").val();
+        var gid = $("#goodsId").val();
+        var address = $("#address").val();
         var phone = $("#phone").val();
-        if (name==undefined || name == "") {
-            alertMsg("请输入姓名");
-            return;
-		}
-        if (phone==undefined || phone == "") {
+        var highpass = $("#highpass").val();
+        var num = $(".sum").val();
+        if (phone === undefined || phone === "") {
             alertMsg("请输入手机号");
             return;
         }
-        $("#changePassword").show();
-        $(".shade").hide();
-        $(".shapsBg").hide();
-    });
-
-    function goodsBuy(){
-        var gid = $("#goodsId").val();
-        var highpass = $("#highpass").val();
-        var name = $("name").val();
-        var phone = $("phone").val();
+        if (address === undefined || address === "") {
+            alertMsg("请输入收货地址");
+            return;
+        }
+        if (highpass === undefined || highpass === "") {
+            alertMsg("请输入二级密码");
+            return;
+        }
         $.ajax({
             url: host + "/User/goods_orders",
             type: "post",
             data: {
                 token: userInfo.token,
                 goods_id: gid,
-				password: highpass,
+				num:num,
+                address:address,
+                phone:phone,
+                password: highpass,
                 pay_name: '余额支付'
             },
             dataType: "json",
             success: function(data) {
                 if(data.errorcode == 0) {
-                    alertMsg('您已经成功购买');
+                    alertMsg('您已经成功购买', function () {
+						window.location.reload();
+                    });
                 } else {
                     alertMsg(data.errormsg);
                 }
             }
         });
-    }
+    });
 
-    function changeHighPass(){
-        var code=$("#code0").val();
-        var highpass=$("#highpass").val();
-        if(!code){
-            alert('请输入验证码');
-            return;
-        }
-        if(!highpass){
-            alert('请输入二级密码');
-            return;
-        }
-        $.ajax({
-            url:host + "/User/changeHighPass",
-            type:"post",
-            data:{
-                token:userInfo.token,
-                code:code,
-                highpass:highpass
-            },
-            dataType:"json",
-            async: true,
-            success:function(data){
-                if(data.errcode != 10000){
-                    alert(data.msg);
-                }else{
-                    alert('密码修改成功');
-                }
-
-            }
-        });
-    }
-</script>
-
-<script>
     $(function() {
         var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
 
-        gethistorylIst();
         function gethistorylIst(){
             $.ajax({
                 url: host + "/User/gethistory",
@@ -414,10 +380,10 @@
                     }
                 },
                 error: function(data) {}
-
             });
         }
 
+        gethistorylIst();
 
         $(".log-sidebar ul li").click(function() {
             var index = $(this).attr('data-tab') - 1;
@@ -445,8 +411,7 @@
         //  });
 
     });
-</script>
-<script>
+
     $(".marketListTop").click(function () {
         if($('.marketListTop ul').is('.active')){
             $('.marketListTop ul').removeClass('active');
@@ -454,9 +419,6 @@
             $('.marketListTop ul').addClass('active');
         }
     });
-
-
 </script>
 </body>
-
 </html>
