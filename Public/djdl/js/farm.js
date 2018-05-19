@@ -721,7 +721,7 @@ $(function() {
 					$(res.friendlist).each(function () {
                         var BoolBlock = this.egg_parent_status==1?'hidden':'visible';
                         var html = '<li style="height: 5.555556rem;"><div class="userBox" style="background-image: url(../../Public/djdl/images/home/portrait/portrait-man.png);top:29%"></div><div class="info" style="height: 50%;"><span class="name" style="display: flex;">'
-                            +this.nickname+'<img style="width: 45%;visibility:'
+                            +this.nickname+'<img style="width: 45%;height:20px;visibility:'
                             +BoolBlock+';" src="../../Public/djdl/images/farm/stop_Clean.png"></span><p><i class="icon"></i><em>'
                             +this.all_rate+'只</em></p></div><button  style=" top: 29%;" data-egg-status="'
                             +this.egg_parent_status+'" data-id="'
