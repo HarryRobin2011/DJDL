@@ -101,37 +101,33 @@ class FarmsController extends CommonController
         $animal=$type==1?C('green_farm'):C('gold_farm');
         $time = strtotime(date('Y-m-d',time()).' 00:00:00');
         if(!$animal){
-             $this->echoJson('获取地数量异常');
+             $this->echoJson(array('errcode'=>10001,'msg'=>'获取地数量异常！'));
         }
 
         $user = $this->getUser($this->userId);
        
         if($user['animal_num'] < $animal){//货币是否足够
-
-            $this->echoJson('开地所需'.$this->SupValue.'不足。');
+            $this->echoJson(array('errcode'=>10002,'msg'=>'开地所需不足。'));
         }
         
         if($type==1){ 
             $count= M('user_farm')->where(array('userid'=>$this->userId,'type'=>1))->count();
             if($count >= 10  ){
-                $this->echoJson('牧场绿地已满');
+                $this->echoJson(array('errcode'=>10003,'msg'=>'牧场绿地已满'));
             }
         }else{ 
             $count0= M('user_farm')->where(array('userid'=>$this->userId,'type'=>1))->count();
             if($count0<10){
-                $this->echoJson('请先开完所有绿地');
+                $this->echoJson(array('errcode'=>10004,'msg'=>'请先开完所有绿地'));
             }
             $count= M('user_farm')->where(array('userid'=>$this->userId,'type'=>2))->count();
             if($count>= 5){
-                $this->echoJson('牧场金地已满');
+                $this->echoJson(array('errcode'=>10005,'msg'=>'牧场金地已满'));
             }
-
         }
         $resutl = M('member')->where(array('id'=>$this->userId))->setDec('animal_num',$animal);
- 
-
         if($this->isFalse($resutl)){
-            $this->echoJson(-1);
+            $this->echoJson(array('errcode'=>10006,'msg'=>'扣除'.$this->SupValue.'异常！'));
         }
         $farmResult = M('user_farm')->add(array(
                 'userid'    => $this->userId,
@@ -147,9 +143,9 @@ class FarmsController extends CommonController
         }
 
  
-        $this->echoJson(-1);
+        $this->echoJson(array('errcode'=>10001,'msg'=>'开地失败！'));
     }
-    //土地增种稻米
+    //土地增养
     public function hatchEgg(){
         if(IS_POST){ 
             $this->checkGet(array('id','egg_num'));

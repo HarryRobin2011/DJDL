@@ -268,9 +268,11 @@ $(function() {
 				}
 			} else if(fieldType == 2) {
 				if(userInfo.animal_num < 3000) {
+                    $('.NoChick').css('display', 'block');
 					$(".shade").show();
 					return;
 				} else {
+                    $('.NoChick').css('display', 'none');
 					$(".shade").hide();
 				}
 			}
