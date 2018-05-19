@@ -2223,7 +2223,7 @@ class UserController extends CommonController
     // 打扫记录
     public function cleanlog()
     {
-        $log = M('clean_log l')->field('l.create_time,l.rate,m.account')
+        $log = M('clean_log l')->field('l.create_time,l.rate,m.account,m.nickname')
             ->join('gs_member as m on m.id = l.friendid')
             ->where(array(
             'l.userid' => $this->userId

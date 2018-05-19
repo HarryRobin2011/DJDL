@@ -244,9 +244,9 @@ $(function() {
 						}else{
 							returnSucc_alert('成功收获 '+data.currency+' 个鸡蛋到仓库中');
 						}
-						setTimeout(function(){
-							window.location.reload();
-						},1000)
+						// setTimeout(function(){
+						// 	window.location.reload();
+						// },1000)
 					} else {
 						cleanFriend_alert(data.msg);
 					}

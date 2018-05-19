@@ -965,7 +965,7 @@ class IndexController extends CommonController {
         if($taskid){
            $count=0;$arraycount=1;
            //$where=' userid=205';
-           $allfarm=$farmmodel->field('add_num,num,userid,id')->select(); //一块田一块田的地算
+           $allfarm=$farmmodel->field('add_num,num,userid,id')->select(); //一块地一块地的地算
            //var_dump($allfarm);exit;
            $allratelog=array();
             foreach($allfarm as $v){   
@@ -976,10 +976,10 @@ class IndexController extends CommonController {
 
                 $dog_rate=$userrate[$v['userid']]['dog_rate'] ;
                  
-                $allrate=($v['add_num']+$v['num'])*($base_rate-$enclosure_rate+$dog_rate);
+                $allrate=($v['add_num']+$v['num'])*($base_rate+$enclosure_rate+$dog_rate);
                 //base_rate
                // echo $rate['price'],'ccc',$enclosure[$enclosurelev],'kk',$userrate[$v['userid']]['rate'];;exit;
-                //更新么快田的利润
+                //更新么快地的利润
                 $farmmodel->where('id='.$v['id'])->save(array('egg_rate'=>$allrate,'task_id'=>$taskid));
                
                 $allratelog[$v['userid']]['allrate']=$allrate+($allratelog[$v['userid']]['allrate']+0);
