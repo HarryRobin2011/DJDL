@@ -56,13 +56,21 @@ class UserController extends CommonController
             $this->echoJson("获取用户信息失败!");
         }
         else{
-            $egg_allrate = M('user_farm')->where(array(
-                'userid' => $this->userId,
-            ))->sum('egg_allrate');
-            $egg_total=$user['currency']+$user['animal_num'];
-            $rate=$egg_allrate/$egg_total;
-            $data['proportion'] = $rate> 0?round($rate, 2):0;
-            if($rate>=0.25){
+            $farm_animal = M('user_farm')->where(array(
+                'userid' => $this->userId))->field('num,add_num,egg_allrate')->select();
+
+            $user['all_animal'] = $user['animal_num'];
+            $user['shouyi']=0;
+            if ($farm_animal) {
+                foreach ($farm_animal as $v) {
+                    $user['shouyi'] += $v['egg_allrate'];
+                    $user['all_animal'] += $v['num'] + $v['add_num'];
+                }
+            }
+            //$user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/($user['all_animal'] + $user['currency']), 2):0;
+            $user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/$user['all_animal'], 2):0;
+
+            if($user['proportion']>=0.25){
                 $data['lock']=true;
             }else{
                 $data['lock']=false;
@@ -269,9 +277,13 @@ class UserController extends CommonController
             ));
             $data = I('post.');
             $user = $this->getUsermsg($this->userId);
-            $excCode=M('sms_log')->where('mobile=\''.$user['account'].'\' and expiration_time>'.time())->field('code')->order('id desc')->find();           
-            if ($excCode != $data['code']) {
-                $this->echoJson($excCode);
+            $excCode=M('sms_log')->where('mobile=\''.$user['account'].'\' and expiration_time>'.time())->field('code')->order('id desc')->find();
+            if ($excCode['code'] != $data['code']) {
+                echo json_encode(array(
+                    'errcode' => 10001,
+                    'msg' => '验证码错误！'
+                ));
+                exit();
             }
             if (md5($data['highpass'])==$user['highpass']) {
                 echo json_encode(array(
@@ -280,9 +292,7 @@ class UserController extends CommonController
                 ));
                 exit();
             }
-            $resutl = M('member')->where(array(
-                'id' => $this->userId
-            ))->setField('highpass', md5($data['highpass']));
+            $resutl = M('member')->where(array('id' => $this->userId))->setField('highpass', md5($data['highpass']));
             if ($resutl) {
                 echo json_encode(array(
                     'errcode' => 10000,
@@ -303,10 +313,8 @@ class UserController extends CommonController
         if (IS_POST) {
             $data = I('post.');
             $user = M('member')->field('id,account,status,token,realname,sex,nickname,phone,level,money,currency,action_code,dog_lev,machine,animal_num,wechat,alipay,enclosure_lev,references,tixian_animal,egg_parent_status,machine_egg,machine_animal,one_clean,crean_time,icon,yuanbao')
-                ->where(array(
-                'id' => $this->userId
-            ))
-                ->find();
+                ->where(array('id' => $this->userId))->find();
+
             if ($user['one_clean']) {
                 $daytime = $user['crean_time'] - time();
                 if ($daytime > 0) {
@@ -315,17 +323,12 @@ class UserController extends CommonController
                     $user['one_clean'] = 0;
                 }
             }
-            $user['all_animal'] = $user['animal_num'] + $user['machine_animal'];
-            
+
             $farm_animal = M('user_farm')->where(array(
                 'userid' => $this->userId
-            ))
-                ->field('num,add_num,egg_allrate')
-                ->select();
+            ))->field('num,add_num,egg_allrate')->select();
+            $user['all_animal'] = $user['animal_num'];
             $user['shouyi']=0;
-            $egg_allrate = 0;
-            $egg_total=$user['currency']+$user['animal_num'];
-            $rate=$egg_allrate/$egg_total;
             if ($farm_animal) {
                 foreach ($farm_animal as $v) {
                     $user['shouyi'] += $v['egg_allrate'];
@@ -333,7 +336,7 @@ class UserController extends CommonController
                 }
             }
             //$user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/($user['all_animal'] + $user['currency']), 2):0;
-            $user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/($user['animal_num'] + $user['currency']), 2):0;
+            $user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/$user['all_animal'], 2):0;
             
             //$user['shouyi'] = (floatval($user['animal_num']) > 0 ? round($user['currency'] / $user['animal_num'], 2) : '0.00');
 //            if ($user['shouyi'] > 3) {
@@ -457,8 +460,7 @@ class UserController extends CommonController
     /**
      * 激活线下
      */
-    public function activityuser()
-    {
+    public function activityuser() {
         if (IS_POST) {
             // $this->checkGet(array('account','nickname','phone','realname','highpass'));
             $this->checkGet(array(
@@ -541,7 +543,7 @@ class UserController extends CommonController
             $password = "123456";
             $add['token'] = md5(mt_rand(111, 999) . time() . mt_rand(111, 999));
             $add['password'] = md5($password);
-            $add['highpass'] = $add['password'];
+//            $add['highpass'] = $add['password'];
             $add['active'] = 1;
             $add['reg_time'] = time();
             $add['references'] = $usermsg['account'];
@@ -1476,29 +1478,22 @@ class UserController extends CommonController
                 $this->echoJson('信息错误！');
             }
             $farm = M('user_farm')->field('id,type,num as base_num,add_num,egg_rate,egg_allrate,egg_status,loc')
-                ->where(array(
-                'userid' => $data['friendid']
-            ))
-                ->order('id   asc')
-                ->select();
+                ->where(array('userid' => $data['friendid']))->order('id asc')->select();
             
             $user = M('member')->field('id,account,status,token,realname as nickname,phone,level,money,currency,action_code,dog_lev,machine,animal_num,enclosure_lev,egg_parent_status,machine_egg,machine_animal,one_clean,crean_time')
-                ->where(array(
-                'id' => $data['friendid']
-            ))
-                ->find();
-            $user['all_animal'] = $user['animal_num'] + $user['machine_animal'];
-            $farm_animal = M('user_farm')->where(array(
-                'userid' => $data['friendid']
-            ))
-                ->field('num,add_num')
-                ->select();
-            if ($farm_animal) {
-                foreach ($farm_animal as $v) {
-                    $user['all_animal'] += $v['num'] + $v['add_num'];
+                ->where(array('id' => $data['friendid']))->find();
+
+            $user['all_animal'] = $user['animal_num'];
+            $user['shouyi']=0;
+            if ($farm) {
+                foreach ($farm as $v) {
+                    $user['shouyi'] += $v['egg_allrate'];
+                    $user['all_animal'] += $v['base_num'] + $v['add_num'];
                 }
             }
-            $user['proportion'] = round($user['animal_num'] / $user['all_animal'], 2);
+            //$user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/($user['all_animal'] + $user['currency']), 2):0;
+            $user['proportion'] = $user['shouyi'] > 0?round($user['shouyi']/$user['all_animal'], 2):0;
+
             $data['friend_farm'] = $farm;
             $data['friend_usermsg'] = $user;
             if ($data) {
@@ -1624,8 +1619,7 @@ class UserController extends CommonController
     }
 
     // 输入用户账号获取用户信息
-    public function transfer()
-    {
+    public function transfer() {
         if (IS_POST) {
             $super = I('post.super');// 1 就是超级转账
             $this->checkGet(array(
@@ -1642,10 +1636,7 @@ class UserController extends CommonController
             $paypwd = I('post.paypwd');
             $realname = I('post.realname');
             $friend = M('member')->field('id')
-                ->where(array(
-                'nickname' => $account,
-                'realname' => $realname
-            )) ->find();
+                ->where(array('nickname' => $account, 'realname' => $realname)) ->find();
             if ($this->isFalse($friend)) {
                 $this->echoJson("找不到账号,用户名跟账号必须匹配！");
             }

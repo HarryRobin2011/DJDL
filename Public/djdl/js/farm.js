@@ -6,10 +6,11 @@ $(function() {
 			if(me != n) {
 				$(n).removeClass('cur');
 			}
-		})
+		});
 		$(me).toggleClass('cur');
 		if(!$(me).hasClass('cur')) {
 			$(".field li").removeClass('canOpen');
+			userAction = "";
 			return;
 		}
 		//功能操作
@@ -21,21 +22,50 @@ $(function() {
 				$(".field li").find('.chicken-box').parent().removeClass('canOpen');
 				break;
 			case 'Up':
-			 	var input_add_num=parseInt(userInfo.animal_num);
-				console.log(input_add_num);
-				$("#input_add_num").val(input_add_num);
-				//				break;
+                $(".field li").removeClass('canOpen');
+				var openField = $(".field li").find('.chicken-box').parent();
+				var fieldList = $('.fieldBox .field li');
+                $.each(openField, function(i, n) {
+                    var fieldIndex = $.inArray(n, fieldList);
+                    currentField = field_open_ed['field' + fieldIndex];
+                    var hasNum = (parseFloat(currentField.add_num) + parseFloat(currentField.base_num));
+                    var fieldType = $(n).hasClass('green') ? 1 : 2;
+                    if(fieldType == 1) {//绿地
+						if (hasNum < 3000) {
+                            $(n).addClass('canOpen');
+						}
+                    } else if(fieldType == 2) {//金地
+                        if (hasNum < 30000) {
+                            $(n).addClass('canOpen');
+                        }
+                    }
+                });
+                console.log('增养');
+				break;
 			case 'hatch':
-			 	var input_hatch_num=parseInt(userInfo.currency);
-			console.log(input_hatch_num);
-				$("#input_hatch_num").val(input_hatch_num);
-				console.log('增养');
-				$(".field li").removeClass('canOpen');
-				$(".field li").find('.chicken-box').parent().addClass('canOpen');
+                $(".field li").removeClass('canOpen');
+                var openField = $(".field li").find('.chicken-box').parent();
+                var fieldList = $('.fieldBox .field li');
+                $.each(openField, function(i, n) {
+                    var fieldIndex = $.inArray(n, fieldList);
+                    currentField = field_open_ed['field' + fieldIndex];
+                    var hasNum = (parseFloat(currentField.add_num) + parseFloat(currentField.base_num));
+                    var fieldType = $(n).hasClass('green') ? 1 : 2;
+                    if(fieldType == 1) {//绿地
+                        if (hasNum < 3000) {
+                            $(n).addClass('canOpen');
+                        }
+                    } else if(fieldType == 2) {//金地
+                        if (hasNum < 30000) {
+                            $(n).addClass('canOpen');
+                        }
+                    }
+                });
+                console.log('孵化');
 				break;
 			case 'harvest':
 				console.log('收获');
-				harvest()
+				harvest();
 				break;
 			case 'machine':
 				console.log('收割机');
@@ -72,11 +102,11 @@ $(function() {
 
 		function harvest() { //收获
 			$(".field li").removeClass('canOpen');
-			$(".field li").each(function(i, n) {
-				if($(n).find('.Bubble').children().css('opacity') == 1) {
-					$(n).addClass('canOpen');
-				}
-			})
+			// $(".field li").each(function(i, n) {
+			// 	if($(n).find('.Bubble').children().css('opacity') == 1) {
+			// 		$(n).addClass('canOpen');
+			// 	}
+			// });
 			$.each(field_open_ed, function(i, n) {
 				if(n == null) {
 					return true;
@@ -129,11 +159,11 @@ $(function() {
 					break;
 				case 'Up':
 					console.log('增养');
-					upChicken();
+					upChicken(me, fieldIndex);
 					break;
 				case 'hatch':
-					console.log('增养');
-					hatchChicken();
+					console.log('孵化');
+					hatchChicken(me, fieldIndex);
 					break;
 				case 'harvest':
 					console.log('收获');
@@ -165,13 +195,61 @@ $(function() {
 			
 			console.log(me)
 		}
-		//增养
-		function hatchChicken() {
+		//孵化
+		function hatchChicken(me, fieldIndex) {
+            currentField = field_open_ed['field' + fieldIndex];
+            var hasNum = (parseFloat(currentField.add_num) + parseFloat(currentField.base_num));
+            var fieldType = $(me).hasClass('green') ? 1 : 2;
+            if(fieldType == 1) {//绿地
+                if (hasNum < 3000) {
+                    var max = 3000-hasNum;
+                    var userCurrency = parseInt(userInfo.currency);
+                    if (max > userCurrency) {
+                        $("#input_hatch_num").val(userCurrency);
+                    } else {
+                        $("#input_hatch_num").val(max);
+                    }
+                }
+            } else if(fieldType == 2) {//金地
+                if (hasNum < 30000) {
+                    var max = 30000-hasNum;
+                    var userCurrency = parseInt(userInfo.currency);
+                    if (max > userCurrency) {
+                        $("#input_hatch_num").val(userCurrency);
+                    } else {
+                        $("#input_hatch_num").val(max);
+                    }
+                }
+            }
 			$(".shade").show();
 			$('.shade .hatch').show();
 		}
 		//增养
-		function upChicken() {
+		function upChicken(me, fieldIndex) {
+            currentField = field_open_ed['field' + fieldIndex];
+            var hasNum = (parseFloat(currentField.add_num) + parseFloat(currentField.base_num));
+            var fieldType = $(me).hasClass('green') ? 1 : 2;
+            if(fieldType == 1) {//绿地
+                if (hasNum < 3000) {
+                	var max = 3000-hasNum;
+                	var userAnimal = parseInt(userInfo.animal_num);
+                	if (max > userAnimal) {
+                        $("#input_add_num").val(userAnimal);
+					} else {
+                        $("#input_add_num").val(max);
+					}
+                }
+            } else if(fieldType == 2) {//金地
+                if (hasNum < 30000) {
+                    var max = 30000-hasNum;
+                    var userAnimal = parseInt(userInfo.animal_num);
+                    if (max > userAnimal) {
+                        $("#input_add_num").val(userAnimal);
+                    } else {
+                        $("#input_add_num").val(max);
+                    }
+                }
+            }
 			$(".shade").show();
 			$('.shade .Up').show();
 		}
@@ -316,7 +394,7 @@ $(function() {
 
 		});
 	});
-	//增养
+	//孵化
 	$('body').delegate('.hatch .yellowBtn', 'click', function() {
 		console.log(this);
 		var enterEggNum = $('.shade .hatch input').val();
@@ -349,7 +427,7 @@ $(function() {
 			success: function(data) {
 				console.log(data)
 				if(data.errcode == 10000) {
-					returnSucc_alert('增养成功')
+					returnSucc_alert('孵化成功')
 //					window.location.reload();
 				} else {
 					cleanFriend_alert(data.msg);
@@ -372,7 +450,7 @@ $(function() {
 		$('.shade .buySuper').show();
 	});
 	$('body').delegate('.buySuper .yellowBtn', 'click', function() {
-		console.log(this)
+		console.log(this);
 		$('.shade .buySuper').hide();
 		$('.shade').hide();
 		//		return;
@@ -801,19 +879,19 @@ $(function() {
 		if (dasao) {
 			window.location.reload();
 		}
-	})
+	});
 	$('body').delegate('#returnSucc_alert .msg-board .only-confirm','click',function(){
 			window.location.reload();
-	})
+	});
 	function returnSucc_alert(text){
-		$('.shade').show();
+		// $('.shade').show();
 		$('#returnSucc_alert').show();
 		$('#returnSucc_alert').css('z-index','110');
 		$('#returnSucc_alert').css('top','0');
 		console.log($('#returnSucc_alert .context .text').html(text))
 	}
 	function cleanFriend_alert(text){
-		$('.shade').show();
+		// $('.shade').show();
 		$('#cleanFriend_alert').show();
 		$('#cleanFriend_alert').css('z-index','110');
 		$('#cleanFriend_alert').css('top','0');

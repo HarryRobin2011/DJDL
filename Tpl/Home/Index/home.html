@@ -32,20 +32,17 @@
     <link type="text/css" rel="stylesheet" href="__PUBLIC__/djdl/css/home/popup.css">
     <link type="text/css" rel="stylesheet" href="__PUBLIC__/djdl/css/home/home.css">
 	<link type="text/css" rel="stylesheet" href="__PUBLIC__/djdl/css/loign/login.css">
-	
-	<style>
-		.gray { 
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    
-    filter: grayscale(100%);
-	
-    filter: gray;
-}
-	</style>
-	
+
+    <style>
+        .gray {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
+        }
+    </style>
 </head>
 <body>
 <div id="page" class="page">
@@ -355,7 +352,9 @@
                 </div>
                 <p style="color:red;font-size: .8rem">*二级密码至少6位，应同时包含英文字母，数字</p>
             </div>
-            <a class="close-btn closePasswordBtn"></a> <a class="only-confirm confirmChangeBtn" href="javascript:void(0);" onclick="changeHighPass()"></a> </div>
+            <a class="close-btn closePasswordBtn"></a>
+            <a class="only-confirm confirmChangeBtn" style="left: -10px;" href="javascript:void(0);" onclick="changeHighPass()"></a>
+        </div>
     </div>
     <div class="alert"  id="chickMarket" style=" display:none;">
         <div class="alert-board">
@@ -377,9 +376,10 @@
 <section class="shade" style="display: none;">
     <!--todo:我的商城-->
     <div class="content storage shops" style="display: none">
-        <div class="title"><img src="__PUBLIC__/djdl/images/window/title-bg.png" class="title-c" alt=""> <img
-                src="__PUBLIC__/djdl/images/window/left_y.png" class="title-l" alt=""> <img src="__PUBLIC__/djdl/images/window/right_y.png"
-                                                                                               class="title-r" alt=""> <em>商城</em>
+        <div class="title"><img src="__PUBLIC__/djdl/images/window/title-bg.png" class="title-c" alt="">
+            <img src="__PUBLIC__/djdl/images/window/left_y.png" class="title-l" alt="">
+            <img src="__PUBLIC__/djdl/images/window/right_y.png" class="title-r" alt="">
+            <em>商城</em>
         </div>
         <i class="close"></i><i class="bottom"></i>
         <ul class="show">
@@ -406,14 +406,14 @@
                     <em class="eggsNum"></em></div>
                 <button class="redListBtn" id="buyPrice"><span>购买一只</span></button>
             </li>
-			<li class="number"><i class="ico machine"></i>
-                    <div class="content">
-                        <p class="name">购买母鸡</p>
-                        <em id="actricePrice">市场价/个</em>
-                        <em class="eggsNum"></em></div>
-                    <button class="redListBtn" id="goumaijidan"><span>去购买</span></button>
-                </li>
-
+            <li class="number"><i class="ico machine"></i>
+                <div class="content">
+                    <p class="name">购买母鸡</p>
+                    <em id="actricePrice">市场价/个</em>
+                    <em class="eggsNum"></em></div>
+                <button class="redListBtn" id="goumaijidan"><span>去购买</span></button>
+            </li>
+        </ul>
     </div>
 
     <div class="content friend-list" style="display:none;">
@@ -537,18 +537,16 @@
 <div class="filter">
   <!--  <div class="tuiguang"><input id="tuiguang" value ></input></div> -->
 	<div id="code">
-		<textarea id="tuiguang" cols="20" rows="2" style="width:100%;background-color:orange" value>
-  </textarea>
+		<textarea id="tuiguang" cols="20" rows="2" style="width:100%;background-color:orange" value></textarea>
 	</div>
 
 	<div>
-
-	<textarea id="tuiguang" style="background-color:orange;color:#fff; width:100%;height:30px; margin-top:70px;" row="2" value ></textarea>
-
-    <img src="/Public/djdl/images/home/emw.png" alt="" class="code">
-    <section class="chart">
-        <button class="emw-code emw-close"><span>返回</span></button>
-    </section>
+        <textarea id="tuiguang" style="background-color:orange;color:#fff; width:100%;height:30px; margin-top:70px;" row="2" value ></textarea>
+        <img src="/Public/djdl/images/home/emw.png" alt="" class="code">
+        <section class="chart">
+            <button class="emw-code emw-close"><span>返回</span></button>
+        </section>
+    </div>
 </div>
 <script src="__PUBLIC__/djdl/js/jquery-1.7.2.min.js"></script>
 <script src="__PUBLIC__/djdl/js/echarts.js"></script>
@@ -621,29 +619,40 @@
 
 <script>
     $(function (){
-			$.ajax({
-            url:host + "/User/getUser",
-            type:"post",
-            data:{token:userInfo.token},
-            dataType:"json",
-			async: false,
-            success:function(data){
-                if(data.errcode != 10000){
+        $.ajax({
+            url: host + "/User/getUser",
+            type: "post",
+            data: {token: userInfo.token},
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data.errcode != 10000) {
                     alertMsg(data.msg);
-                }else{
-                   sessionStorage.setItem('userInfo',JSON.stringify(data.result[0]));
-                   var data = data.result[0];
-                   //console.log(data.icon>=0&&data.icon<5)
-                   if (!(data.icon>=0&&data.icon<5)) {
-                   		data.icon = 1;
-                   }
-                   if (!data.icon) {
-                   	data.icon = 1;
-                   }
-                   $('.myheadImg').css('background-image','url(__PUBLIC__/djdl/images/home/portrait/user_icon'+data.icon+'.png)');
+                } else {
+                    sessionStorage.setItem('userInfo', JSON.stringify(data.result[0]));
+                    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+                    if(!userInfo.nickname) userInfo.nickname = "注册会员";
+                    $('.item-content .name').text(userInfo.nickname);
+                    if(!userInfo.currency) userInfo.currency = 0;
+                    $('.item-content .round:eq(0)').text(userInfo.currency);
+                    $('.item-content .round:eq(1)').text(userInfo.all_animal);
+                    $('.item-content .round:eq(2)').text(userInfo.proportion);
+                    $('.item-content .round:eq(3)').text(userInfo.yuanbao);
+
+                    var data = data.result[0];
+                    //console.log(data.icon>=0&&data.icon<5)
+                    if (!(data.icon >= 0 && data.icon < 5)) {
+                        data.icon = 1;
+                    }
+                    if (!data.icon) {
+                        data.icon = 1;
+                    }
+                    $('.myheadImg').css('background-image', 'url(__PUBLIC__/djdl/images/home/portrait/user_icon' + data.icon + '.png)');
                 }
             }
         });
+
+
 		var u = 'http://' + window.location.hostname + '/index.php/Index/index/user/'+userInfo.account;
 //		console.log($('#code'))
 		$('#code').qrcode(u);
@@ -927,10 +936,29 @@
             window.location.href=url;
         });
         $("#goTianE").click(function(){
-            var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-            var token = userInfo.token;
-            var url = "<{:U('Index/farm')}>?token="+token;
-            window.location.href=url;
+            $.ajax({
+            	url: host + "/User/GetFarmControl",
+            	type: "post",
+            	data: { token: userInfo.token },
+            	dataType: "json",
+            	async: false,
+            	success: function(data) {
+            		console.log(data);
+            		if(data.errcode != 10000) {
+            			alertMsg(data.msg);
+            		} else {
+            			if(data.result[0].lock==false){
+                            var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+                            var token = userInfo.token;
+                            var url = "<{:U('Index/farm')}>?token="+token;
+                            window.location.href=url;
+            			}else{
+            				alertMsg("您的账号已被管控，请联系管理员解除管控");
+            			}
+            		}
+            	}
+            });
+
         });
     });
 </script>
@@ -1010,20 +1038,6 @@
 </script>
 <script type="text/javascript">
     $(function () {
-        //处理页面显示业务
-        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-        if(!userInfo.nickname) userInfo.nickname = "注册会员";
-        $('.item-content .name').text(userInfo.nickname);
-        //$('.q-num .red').text(userInfo.money);
-		$('.q-num .red').text(userInfo.currency);
-        if(!userInfo.currency) userInfo.currency = 0;
-      //  $('.item-content .round:eq(0)').text(userInfo.currency);
-
-        if(!userInfo.animal_count) userInfo.animal_count = 0;
-//      $('.item-content .round:eq(1)').text(22);
-        $('.item-content .round:eq(1)').text(userInfo.all_animal);
-		$('.item-content .round:eq(2)').text(userInfo.proportion);
-        $('.item-content .round:eq(3)').text(userInfo.yuanbao);
 		
 		$("#clickMail").click(function () {
 			
@@ -1188,6 +1202,6 @@
 		});
     });
 </script>
-<!--<audio src="__PUBLIC__/djdl/music/bg.mp3" preload="" loop></audio>
+<!--<audio src="__PUBLIC__/djdl/music/bg.mp3" preload="" loop></audio>-->
 </body>
 </html>

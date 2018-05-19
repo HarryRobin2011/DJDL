@@ -222,192 +222,213 @@ background-position: left center;text-align:right;"></p>-->
 		<script src="__PUBLIC__/djdl/js/global.js"></script>
 		<script src="__PUBLIC__/djdl/js/record.js"></script>
 		<script src="__PUBLIC__/djdl/js/jquery-1.7.2.min.js"></script>
-		<script>console.log()
-$('.desktop .clean').click(function() {
-	var id = $(this).attr('data-id');
-	if(!id) {
-		return;
-	}
-	$.ajax({
-		url: host + "/User/clearnfriend",
-		type: "post",
-		data: {
-			token: userInfo.token,
-			toUserId: id
-		},
-		dataType: "json",
-		success: function(data) {
-			console.log(data)
-			if(data.errcode == 10000) {
-				cleanFriend_alert(data.currency);
-				//							window.location.reload();
-			} else {
-				returnAlert(data.msg);
-			}
-		},
-		error: function(data) {}
-	});
-});
-$('.cleanCheck .yellowBtn').click(function() {
-	window.location.reload();
-})
+		<script>
+            console.log()
+            $('.desktop .clean').click(function () {
+                var id = $(this).attr('data-id');
+                if (!id) {
+                    return;
+                }
+                $.ajax({
+                    url: host + "/User/clearnfriend",
+                    type: "post",
+                    data: {
+                        token: userInfo.token,
+                        toUserId: id
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data)
+                        if (data.errcode == 10000) {
+                            cleanFriend_alert(data.currency);
+                            //							window.location.reload();
+                        } else {
+                            returnAlert(data.msg);
+                        }
+                    },
+                    error: function (data) {
+                    }
+                });
+            });
+            $('.cleanCheck .yellowBtn').click(function () {
+                window.location.reload();
+            })
 
-function cleanFriend_alert(text) {
-	$('.shade').show();
-	$('.cleanCheck').show();
-	console.log($('.shade .cleanCheck em').html(text + '只'))
-}
-function returnAlert(text){
+            function cleanFriend_alert(text) {
+                $('.shade').show();
+                $('.cleanCheck').show();
+                console.log($('.shade .cleanCheck em').html(text + '只'))
+            }
+
+            function returnAlert(text) {
 //		$('.shade').show();
-		$('#cleanFriend_alert').show();
-		$('#cleanFriend_alert').css('z-index','110');
-		$('#cleanFriend_alert').css('top','0');
-		console.log($('#cleanFriend_alert .context .text').html(text))
-}
-var friendInfo = {};
-$.ajax({
-	url: host + "/User/getfriendsfarm",
-	type: "post",
-	data: {
-		token: userInfo.token,
-		friendid: window.location.href.split('id=')[1]
-	},
-	dataType: "json",
-	success: function(data) {
-		console.log(data)
-		if(data.errcode == 10000) {
-			friendInfo = data.result[0];
-			addChicken(friendInfo.friend_farm)
-			//delete
-			//						friendInfo.friend_usermsg.egg_parent_status = 1
-			if(friendInfo.friend_usermsg.egg_parent_status == 1) {
-				$('.desktop .clean').removeClass('cur');
-				$('.desktop .clean').attr('data-id', friendInfo.friendid);
+                $('#cleanFriend_alert').show();
+                $('#cleanFriend_alert').css('z-index', '110');
+                $('#cleanFriend_alert').css('top', '0');
+                console.log($('#cleanFriend_alert .context .text').html(text))
+            }
 
-			}
-			//						console.log(friendInfo.friend_usermsg.egg_parent_status)
-			if(friendInfo.friend_usermsg.egg_parent_status == 2) {
-				$('.desktop .clean').addClass('cur');
-			}
-			console.log(friendInfo.friend_usermsg)
-			$('.userBox .name').html(friendInfo.friend_usermsg.nickname);
-			$('.userBox .clm-l').html(friendInfo.friend_usermsg.currency);
-			$('.userBox .clm-r').html(friendInfo.friend_usermsg.all_animal);
-			$('.item-content .dataEdit').text(userInfo.shouyi);  //2018-05-13
-			//栅栏的等级
+            var friendInfo = {};
+            $.ajax({
+                url: host + "/User/getfriendsfarm",
+                type: "post",
+                data: {
+                    token: userInfo.token,
+                    friendid: window.location.href.split('id=')[1]
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    if (data.errcode == 10000) {
+                        friendInfo = data.result[0];
+                        addChicken(friendInfo.friend_farm);
+                        //delete
+                        //						friendInfo.friend_usermsg.egg_parent_status = 1
+                        if (friendInfo.friend_usermsg.egg_parent_status == 1) {
+                            $('.desktop .clean').removeClass('cur');
+                            $('.desktop .clean').attr('data-id', friendInfo.friendid);
+
+                        }
+                        //						console.log(friendInfo.friend_usermsg.egg_parent_status)
+                        if (friendInfo.friend_usermsg.egg_parent_status == 2) {
+                            $('.desktop .clean').addClass('cur');
+                        }
+                        console.log(friendInfo.friend_usermsg);
+                        $('.userBox .name').html(friendInfo.friend_usermsg.nickname);
+                        $('.userBox .clm-l').html(friendInfo.friend_usermsg.currency);
+                        $('.userBox .clm-r').html(friendInfo.friend_usermsg.all_animal);
+                        $('.item-content .dataEdit').text(friendInfo.friend_usermsg.proportion);  //2018-05-13
+                        //栅栏的等级
 //			friendInfo.friend_usermsg.enclosure_lev=4
-			$('.field li').each(function(i, n) {
-				if($(n).find(".chicken-box").size()) {
-					$(n).addClass('lv' + friendInfo.friend_usermsg.enclosure_lev)
-				}
-			})
-			//稻草人的等级
+                        $('.field li').each(function (i, n) {
+                            if ($(n).find(".chicken-box").size()) {
+                                $(n).addClass('lv' + friendInfo.friend_usermsg.enclosure_lev)
+                            }
+                        })
+                        //稻草人的等级
 //			friendInfo.friend_usermsg.dog_lev=3
 //			console.log($('.dog .dog_lev_icon')[0].currentSrc)
-			if(friendInfo.friend_usermsg.dog_lev) {
-								$('.dog').show();
-								$('.dog .dog_lev_icon').attr('src', $('.dog .dog_lev_icon')[0].currentSrc.slice(0, -5) + friendInfo.friend_usermsg.dog_lev + '.gif')
-							}
-			//					alert('打扫成功')
-			//					window.location.reload();
-		} else {
-			returnAlert(data.msg);
-		}
-	},
-	error: function(data) {}
-});
+                        if (friendInfo.friend_usermsg.dog_lev) {
+                            $('.dog').show();
+                            $('.dog .dog_lev_icon').attr('src', $('.dog .dog_lev_icon')[0].currentSrc.slice(0, -5) + friendInfo.friend_usermsg.dog_lev + '.gif')
+                        }
+                        //					alert('打扫成功')
+                        //					window.location.reload();
+                    } else {
+                        returnAlert(data.msg);
+                    }
+                },
+                error: function (data) {
+                }
+            });
 
-var field_open_ed = {
-	//绿地
-	field0: null,
-	field1: null,
-	field2: null,
-	field3: null,
-	field4: null,
-	field5: null,
-	field6: null,
-	field7: null,
-	field8: null,
-	field9: null,
-	//金地
-	field10: null,
-	field11: null,
-	field12: null,
-	field13: null,
-	field14: null,
-};
+            var field_open_ed = {
+                //绿地
+                field0: null,
+                field1: null,
+                field2: null,
+                field3: null,
+                field4: null,
+                field5: null,
+                field6: null,
+                field7: null,
+                field8: null,
+                field9: null,
+                //金地
+                field10: null,
+                field11: null,
+                field12: null,
+                field13: null,
+                field14: null,
+            };
 
-function addChicken(c) {
-	console.log(c)
-	var field_open_num = { //开地的数量
-			green: 0,
-			gold: 10
-		},
-		level = 0;
-	//				console.log(chicken)
-	for(var i = 0; i < c.length; i++) {
-		//					console.log(c[i])
-		var status = c[i].status;
-		var txt = "";
-		var cl = "";
-		var li_index;
-		var farmAnimalsNum = parseInt(c[i].add_num)+parseInt(c[i].base_num);
-		var runGifNum = 1;
-		if(c[i].type == '1') {
-			li_index = field_open_num.green++;
-			runGifNum = Math.ceil(farmAnimalsNum/1000);
-		} else {
-			li_index = field_open_num.gold++;
-			runGifNum = Math.ceil(farmAnimalsNum/10000);
-		}
-		field_open_ed['field' + li_index] = c[i];
-		while($(".field li").eq(li_index).find(".chicken-box").size() > 0) {
-			li_index = Math.floor(Math.random() * c.length); //可均衡获取0到9的随机整数
-		}
-		if(c[i].egg_status == 1) {
-			$(".field li").eq(li_index).find('.Bubble').children().css('opacity', 1);
-		}
-		if(c[i].egg_status == 2) {
-			$(".field li").eq(li_index).find('.Bubble').children().css('opacity', 0);
-		}
-		$(".field li").eq(li_index).addClass('');
-		console.log(c)
-		$(".field li").eq(li_index).append('<img  style="width:100%;" class="bg chicken-box" src="__PUBLIC__/djdl/images/farm/run/run_gif_'+runGifNum+'.gif" alt="">');
+            function addChicken(c) {
+                console.log(c)
+                var field_open_num = { //开地的数量
+                        green: 0,
+                        gold: 10
+                    },
+                    level = 0;
+                //				console.log(chicken)
+                for (var i = 0; i < c.length; i++) {
+                    //					console.log(c[i])
+                    var status = c[i].status;
+                    var txt = "";
+                    var cl = "";
+                    var li_index;
+                    var farmAnimalsNum = parseInt(c[i].add_num) + parseInt(c[i].base_num);
+                    var runGifNum = 1;
+                    var loc = c[i].loc;
+                    if (c[i].type == '1') {
+                        if (loc != null && loc != "") {
+                            li_index = loc;
+                        } else {
+                            li_index = field_open_num.green;
+                            while (field_open_ed['field' + li_index] != null) {
+                                li_index = ++field_open_num.green;
+                            }
+                        }
+                        runGifNum = Math.ceil(farmAnimalsNum / 1000);
+                    } else {
+                        if (loc != null && loc != "") {
+                            li_index = loc;
+                        } else {
+                            li_index = field_open_num.gold;
+                            while (field_open_ed['field' + li_index] != null) {
+                                li_index = ++field_open_num.gold;
+                            }
+                        }
+                        runGifNum = Math.ceil(farmAnimalsNum / 10000);
+                    }
+                    field_open_ed['field' + li_index] = c[i];
+                    while ($(".field li").eq(li_index).find(".chicken-box").size() > 0) {
+                        li_index = Math.floor(Math.random() * c.length); //可均衡获取0到9的随机整数
+                    }
+                    if (c[i].egg_status == 1) {
+                        $(".field li").eq(li_index).find('.Bubble').children().css('opacity', 1);
+                    }
+                    if (c[i].egg_status == 2) {
+                        $(".field li").eq(li_index).find('.Bubble').children().css('opacity', 0);
+                    }
+                    $(".field li").eq(li_index).addClass('');
+                    console.log(c)
+                    $(".field li").eq(li_index).append('<img  style="width:100%;" class="bg chicken-box" src="__PUBLIC__/djdl/images/farm/run/run_gif_' + runGifNum + '.gif" alt="">');
 //		$(".field li").eq(li_index).append('<div class="chicken-box run-move"  style="animation-delay:  ' + c[i].delay + 's; top: ' + c[i].top + 'rem;" id-name=' + c[i].name + '><i class="chicken-run" style="animation-delay:  ' + c[i].delay + 's;"></i><span class="txt ' + cl + '">' + txt + '<span></div>');
 
-	}
-}
-var currentField = null;
-$('.fieldBox .field li').click(function() {
-	console.log(this)
-	var me = this;
-	//栅栏的等级
-	var fieldIndex = $.inArray(me, $('.field li'));
-	console.log(fieldIndex)
-	currentField = field_open_ed['field' + fieldIndex];
-	if($(me).find('.chicken-box').length && !$(me).hasClass('canOpen')) {
-		console.log(field_open_ed['field' + fieldIndex])
-		console.log(currentField.add_num)
-		var showboxHtml = '<div class="clickShowBox show" style="top: 0px;"><p><b>母鸡总数:</b><em>' +
-			(parseFloat(currentField.add_num) + parseFloat(currentField.base_num)) +
-			'</em></p><p><b>本日产蛋:</b><em>' +
-			currentField.egg_rate + '</em></p><p><b>历史产蛋:</b><em>' +
-			currentField.egg_allrate + '</em></p><i></i></div>';
-		$($(me).children()[0]).append(showboxHtml);
-		$('body').append('<section class="clickShowBox-shade"></section>');
-	}
-})
-$('body').delegate('.clickShowBox-shade', 'click', function() {
-	$(this).remove();
-	$('.fieldBox .clickShowBox').remove();
-});
-$('.userBox .back').click(function() {
-	history.go(-1);
-});
-$('.userBox .refresh').click(function() {
-	window.location.reload();
-});
-//			console.log($('.userBox .back'))</script>
-	</body>
+                }
+            }
 
+            var currentField = null;
+            $('.fieldBox .field li').click(function () {
+                console.log(this);
+                var me = this;
+                //栅栏的等级
+                var fieldIndex = $.inArray(me, $('.field li'));
+                console.log(fieldIndex)
+                currentField = field_open_ed['field' + fieldIndex];
+                if ($(me).find('.chicken-box').length && !$(me).hasClass('canOpen')) {
+                    console.log(field_open_ed['field' + fieldIndex])
+                    console.log(currentField.add_num)
+                    var showboxHtml = '<div class="clickShowBox show" style="top: 0px;"><p><b>母鸡总数:</b><em>' +
+                        (parseFloat(currentField.add_num) + parseFloat(currentField.base_num)) +
+                        '</em></p><p><b>本日产蛋:</b><em>' +
+                        currentField.egg_rate + '</em></p><p><b>历史产蛋:</b><em>' +
+                        currentField.egg_allrate + '</em></p><i></i></div>';
+                    $($(me).children()[0]).append(showboxHtml);
+                    $('body').append('<section class="clickShowBox-shade"></section>');
+                }
+            });
+            $('body').delegate('.clickShowBox-shade', 'click', function () {
+                $(this).remove();
+                $('.fieldBox .clickShowBox').remove();
+            });
+            $('.userBox .back').click(function () {
+                history.go(-1);
+            });
+            $('.userBox .refresh').click(function () {
+                window.location.reload();
+            });
+            //			console.log($('.userBox .back'))
+		</script>
+	</body>
 </html>

@@ -252,7 +252,7 @@
 						<div class="flex"></div>
 						<div class="f-r"></div>
 					</div>
-					<p>输入增养数量</p>
+					<p>输入孵化数量</p>
 					<label for="">
                 <input type="number" id="input_hatch_num"  value="1" min="1">
             </label>
@@ -1057,9 +1057,13 @@
 						}
 						runGifNum = Math.ceil(farmAnimalsNum / 1000);
 					} else {
-                        li_index = field_open_num.gold;
-                        while (field_open_ed['field' + li_index] != null) {
-                            li_index = ++field_open_num.gold;
+                        if (loc != null && loc != "") {
+                            li_index = loc;
+                        } else {
+                            li_index = field_open_num.gold;
+                            while (field_open_ed['field' + li_index] != null) {
+                                li_index = ++field_open_num.gold;
+                            }
                         }
 						runGifNum = Math.ceil(farmAnimalsNum / 10000);
 					}
