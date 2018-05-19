@@ -100,6 +100,7 @@ class IndexController extends Controller
     public function chickenMarket()
     {
         $this->user = M('member')->where("token='" . $_SESSION['token'] . "'")->find();
+        $userId = $this->user['id'];
         /*
          * if(empty($this->user['phone']) || empty($this->user['consignee_addr'])){
          * die("<script>alert('请先设置好您的电话和收货地址');location.href='".U('Index/user')."?token=".$_SESSION['token']."'</script>");
@@ -116,7 +117,9 @@ class IndexController extends Controller
             ->order('id desc')
            // ->limit(($page - 1) * $pagesize, $pagesize)
             ->select();
+        $listOrder = M("goods_orders")->where("member_id=$userId")->order('order_time desc')->select();
         $this->assign('list', $list);
+        $this->assign('orderList', $listOrder);
         $this->assign('page', $page);
         $this->assign('token', $_SESSION['token']);
         $this->assign('user', $this->user);

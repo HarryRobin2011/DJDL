@@ -811,7 +811,7 @@
 								if($(n).find(".chicken-box").size()) {
 									$(n).addClass('lv' + data.result[0].enclosure_lev)
 								}
-							})
+							});
 							//能不能收获
 							//							$('.field li').each(function(i,n){
 							//								if ($(n).find(".chicken-box").size()) {
@@ -938,7 +938,6 @@
 			});
 
 			var chicken = {};
-			getUserFarm()
 
 			function getUserFarm() {
 				$.ajax({
@@ -962,6 +961,8 @@
 					}
 				});
 			}
+            getUserFarm();
+
 			$.ajax({
 				url: host + "/All/getNotice",
 				type: "get",
@@ -1044,11 +1045,22 @@
 					var li_index;
 					var farmAnimalsNum = parseInt(c[i].add_num) + parseInt(c[i].base_num);
 					var runGifNum = 1;
+					var loc = c[i].loc;
 					if(c[i].type == '1') {
-						li_index = field_open_num.green++;
+					    if (loc != null && loc != "") {
+					        li_index = loc;
+						} else {
+                            li_index = field_open_num.green;
+                            while (field_open_ed['field' + li_index] != null) {
+                                li_index = ++field_open_num.green;
+							}
+						}
 						runGifNum = Math.ceil(farmAnimalsNum / 1000);
 					} else {
-						li_index = field_open_num.gold++;
+                        li_index = field_open_num.gold;
+                        while (field_open_ed['field' + li_index] != null) {
+                            li_index = ++field_open_num.gold;
+                        }
 						runGifNum = Math.ceil(farmAnimalsNum / 10000);
 					}
 					//处理数据错误导致gif图显示错误

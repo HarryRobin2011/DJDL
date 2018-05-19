@@ -87,18 +87,24 @@ class UserController extends CommonController
                 'errormsg' => '请填写您的电话和收货地址'
             )));
         }
+        if (md5($password) != $user['highpass']) {
+            die(json_encode(array(
+                'errorcode' => '2',
+                'errormsg' => '密码错误'
+            )));
+        }
         $goods = M('goods')->where(array(
             'id' => $goodsId, 'deleted' => 0, 'enable' => 1
         ))->find();
         if (!$goods) {
             die(json_encode(array(
-                'errorcode' => '2',
+                'errorcode' => '3',
                 'errormsg' => '此商品不存在'
             )));
         }
-        if ($goods['stock'] < $num) {
+        if ($goods['goods_stock'] < $num) {
             die(json_encode(array(
-                'errorcode' => '3',
+                'errorcode' => '4',
                 'errormsg' => '此商品库存不足'
             )));
         }
@@ -118,14 +124,15 @@ class UserController extends CommonController
         if ($data['pay_name'] == '余额支付') {
             if (($user['currency'] - $data['order_amount']) <= 0) {
                 die(json_encode(array(
-                    'errorcode' => '4',
+                    'errorcode' => '5',
                     'errormsg' => '您的余额不足'
                 )));
             }
             $dt = strtotime(date('Y-m-d 00:00:00', time()));
             $amount1 = M('goods_orders')->where('member_id=' . $this->userId . ' and pay_name=\'余额支付\' and order_time>=' . $dt)->sum('order_amount');
-            $amount2 = M('transfer_log')->where('userid=' . $this->userId . ' and type=2 and status=2 and create_time>=' . $dt)->sum('realprice');
-            $amount = $amount1 + $amount2;
+            $amount2 = M('transfer_log')->where('userid=' . $this->userId . ' and type=1 and status=2 and create_time>=' . $dt)->sum('realprice');
+            $amount3 = M('transfer_log')->where('userid=' . $this->userId . ' and type=2 and status=2 and create_time>=' . $dt)->sum('realprice');
+            $amount = $amount1 + $amount2 + $amount3;
             $greencount = M('user_farm')->where(array(
                 'userid' => $this->userId,
                 'type' => 1
@@ -136,21 +143,21 @@ class UserController extends CommonController
             ))->count();
             if ($greencount < 0 || $goldcount < 0) {
                 die(json_encode(array(
-                    'errorcode' => '5',
+                    'errorcode' => '6',
                     'errormsg' => '获取用户土地信息失败'
                 )));
             }
             $MaxAmount = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
             if ($data['order_amount'] + $amount > $MaxAmount) {
                 die(json_encode(array(
-                    'errorcode' => '6',
+                    'errorcode' => '7',
                     'errormsg' => '您当日最大剩余可交易量为' . ($MaxAmount - $amount)
                 )));
             }
         } else {
             if (($user['yuanbao'] - $data['order_amount']) <= 0) {
                 die(json_encode(array(
-                    'errorcode' => '7',
+                    'errorcode' => '8',
                     'errormsg' => '您的元宝不足'
                 )));
             }
@@ -159,7 +166,7 @@ class UserController extends CommonController
         if ($ret) {
             M('goods_orders')->add($data);
             M('goods')->where('id=' . $goods['id'])->save(array(
-                $goods['stock'] => ($goods['stock'] - $data['goods_qty'])
+                $goods['goods_stock'] => ($goods['goods_stock'] - $data['goods_qty'])
             ));
             if ($data['pay_name'] == '余额支付') {
                 M('member')->where('id=' . $this->userId)->save(array(
@@ -176,7 +183,7 @@ class UserController extends CommonController
             )));
         } else {
             die(json_encode(array(
-                'errorcode' => '8',
+                'errorcode' => '9',
                 'errormsg' => '添加商品失败'
             )));
         }
@@ -1441,12 +1448,10 @@ class UserController extends CommonController
             // die("delete from __PREFIX__user_farm where userid=".$this->userId." and create_time + 7 * 24 * 3600 < UNIX_TIMESTAMP");
             $M = new \Think\Model();
             $M->execute("delete from " . C('DB_PREFIX') . "user_farm where userid=" . $this->userId . " and create_time + 90 * 24 * 3600 < UNIX_TIMESTAMP()");
-            $data = M('user_farm')->field("id,type,num as base_num,add_num,egg_rate,egg_allrate,egg_status,create_time,from_unixtime((create_time + 90 * 24 * 3600),'%Y-%m-%d') as endTime")
+            $data = M('user_farm')->field("id,type,num as base_num,add_num,egg_rate,egg_allrate,egg_status,create_time,loc,from_unixtime((create_time + 90 * 24 * 3600),'%Y-%m-%d') as endTime")
                 ->where(array(
                 'userid' => $this->userId
-            ))
-                ->order('id   asc')
-                ->select();
+            ))->order('create_time asc')->select();
             if ($data) {
                 $this->echoJson($data);
             }
@@ -1470,7 +1475,7 @@ class UserController extends CommonController
             if (! $friend) {
                 $this->echoJson('信息错误！');
             }
-            $farm = M('user_farm')->field('id,type,num as base_num,add_num,egg_rate,egg_allrate,egg_status')
+            $farm = M('user_farm')->field('id,type,num as base_num,add_num,egg_rate,egg_allrate,egg_status,loc')
                 ->where(array(
                 'userid' => $data['friendid']
             ))
@@ -1681,7 +1686,12 @@ class UserController extends CommonController
                     $this->echoJson('支付密码错入错误！');
                 }
 //            }
-            
+            $dt = strtotime(date('Y-m-d 00:00:00', time()));
+            $amount1 = M('goods_orders')->where('member_id=' . $this->userId . ' and pay_name=\'余额支付\' and order_time>=' . $dt)->sum('order_amount');
+            $amount2 = M('transfer_log')->where('userid=' . $this->userId . ' and type=1 and status=2 and create_time>=' . $dt)->sum('realprice');
+            $amount3 = M('transfer_log')->where('userid=' . $this->userId . ' and type=2 and status=2 and create_time>=' . $dt)->sum('realprice');
+            $amount = $amount1 + $amount2 + $amount3;
+            $countMax = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
             // 需求更改。订单生产就扣钱。然后交易完成后钱才会到对方那里。
             if ($type == 1) { // 转母鸡 15快地全开不用手续费//十五块地未开完不能售卖母鸡
                 if(intval($usermsg['isadmin'])>0){//推广管理员无手续费 开地不限制
@@ -1690,9 +1700,6 @@ class UserController extends CommonController
                     if ($farmcount < 11) {
                         $this->echoJson('售卖' . $this->SupValue . '需开满10块绿地和1块金地');
                     }
-                    $dt = strtotime(date('Y-m-d 00:00:00', time()));
-                    $amount = M('transfer_log')->where('userid=' . $this->userId . ' and type=1 and status=2 and create_time>=' . $dt)->sum('realprice');
-                    $countMax = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
                     if ($countMax < $num + $amount) {
                         $this->echoJson("您今天最多还可售卖 ".($countMax-$amount)."只{$this->SupValue}");
                     }
@@ -1761,9 +1768,6 @@ class UserController extends CommonController
                 if(intval($usermsg['isadmin'])>0){//推广管理员无手续费 开地不限制
                     $transfer_percent=0;
                 }else{
-                    $dt = strtotime(date('Y-m-d 00:00:00', time()));
-                    $amount = M('transfer_log')->where('userid=' . $this->userId . ' and type=2 and status=2 and create_time>=' . $dt)->sum('realprice');
-                    $countMax = $greencount * $this->greenLandLevel + $goldcount * $this->goldLandLevel;
                     if ($countMax < $num + $amount) {
                         $this->echoJson("您今天最多还可售卖 ".($countMax-$amount)."个{$this->SubValue}");
                     }

@@ -106,16 +106,19 @@
 				</div>
 				<div class="log-content clearfix log_content_2" style="display:none; height: 90%;">
 					<ul class="dingdanList">
-						<li>
-							<p>订单号：<span>123456</span></p>
-							<p>创建时间：<span>2018-05-17</span></p>
-							<p>订单状态：<span>已完成</span></p>
-						</li>
-						<li>
-							<p>订单号：<span>123456</span></p>
-							<p>创建时间：<span>2018-05-17</span></p>
-							<p>订单状态：<span>已完成</span></p>
-						</li>
+						<volist name="orderList" id="o">
+							<li>
+								<p>商品名称：<span><{$o.goods_name}></span></p>
+								<p>创建时间：<span><{$o.order_time|date="Y-m-d",###}></span></p>
+								<p>订单状态：
+									<span>
+										<if condition="$o.status eq 0">待发货</if>
+										<if condition="$o.status eq 1">已发货</if>
+										<if condition="$o.status eq 2">拒发货</if>
+									</span>
+								</p>
+							</li>
+						</volist>
 					</ul>
 				</div>
 			</div>
@@ -205,67 +208,67 @@
 <script src="__PUBLIC__/djdl/js/global.js"></script>
 <!-- 获取验证码 -->
 <script type="text/javascript">
-    var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-    var InterValObj; //timer变量，控制时间
-    var count = 60; //间隔函数，1秒执行
-    var curCount;//当前剩余秒数
-    var code = ""; //验证码
-    var codeLength = 6;//验证码长度
-    function sendMessage() {
-        curCount = count;
-        var dealType; //验证方式
-        var uid=$("#uid").val();//用户uid
-        if ($("#phone").attr("checked") == true) {
-            dealType = "phone";
-        }
-        else {
-            dealType = "email";
-        }
-        $.ajax({
-            url:host + "/User/getUser",
-            type:"post",
-            data:{token:userInfo.token},
-            dataType:"json",
-            async: false,
-            success:function(data){
-                console.log(data);
-                if(data.errcode != 10000){
-                    alert(data.msg);
-                }else{
-                    $.ajax({
-                        url:host + "/Tool/sendCode",
-                        type:"post",
-                        data:{mobile:data.result[0].account},
-                        dataType:"json",
-                        async: false,
-                        success:function(data){
-                            if(data.errcode != 10000){
-                                alert(data.msg);
-                            }else{
-                                //设置button效果，开始计时
-                                $("#btnSendCode").attr("disabled", "true");
-                                $("#btnSendCode").val( + curCount + "秒再获取");
-                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
-    //timer处理函数
-    function SetRemainTime() {
-        if (curCount == 0) {
-            window.clearInterval(InterValObj);//停止计时器
-            $("#btnSendCode").removeAttr("disabled");//启用按钮
-            $("#btnSendCode").val("重新发送验证码");
-            code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
-        }
-        else {
-            curCount--;
-            $("#btnSendCode").val( + curCount + "秒再获取");
-        }
-    }
+    // var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    // var InterValObj; //timer变量，控制时间
+    // var count = 60; //间隔函数，1秒执行
+    // var curCount;//当前剩余秒数
+    // var code = ""; //验证码
+    // var codeLength = 6;//验证码长度
+    // function sendMessage() {
+    //     curCount = count;
+    //     var dealType; //验证方式
+    //     var uid=$("#uid").val();//用户uid
+    //     if ($("#phone").attr("checked") == true) {
+    //         dealType = "phone";
+    //     }
+    //     else {
+    //         dealType = "email";
+    //     }
+    //     $.ajax({
+    //         url:host + "/User/getUser",
+    //         type:"post",
+    //         data:{token:userInfo.token},
+    //         dataType:"json",
+    //         async: false,
+    //         success:function(data){
+    //             console.log(data);
+    //             if(data.errcode != 10000){
+    //                 alert(data.msg);
+    //             }else{
+    //                 $.ajax({
+    //                     url:host + "/Tool/sendCode",
+    //                     type:"post",
+    //                     data:{mobile:data.result[0].account},
+    //                     dataType:"json",
+    //                     async: false,
+    //                     success:function(data){
+    //                         if(data.errcode != 10000){
+    //                             alert(data.msg);
+    //                         }else{
+    //                             //设置button效果，开始计时
+    //                             $("#btnSendCode").attr("disabled", "true");
+    //                             $("#btnSendCode").val( + curCount + "秒再获取");
+    //                             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+    //                         }
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     });
+    // }
+    // //timer处理函数
+    // function SetRemainTime() {
+    //     if (curCount == 0) {
+    //         window.clearInterval(InterValObj);//停止计时器
+    //         $("#btnSendCode").removeAttr("disabled");//启用按钮
+    //         $("#btnSendCode").val("重新发送验证码");
+    //         code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+    //     }
+    //     else {
+    //         curCount--;
+    //         $("#btnSendCode").val( + curCount + "秒再获取");
+    //     }
+    // }
 
     //=================================================商品数量==============================================
     $('.plus').click(function () {
@@ -360,30 +363,30 @@
     });
 
     $(function() {
-        var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-
-        function gethistorylIst(){
-            $.ajax({
-                url: host + "/User/gethistory",
-                type: "post",
-                data: {
-                    token: userInfo.token
-                },
-                dataType: "json",
-                success: function(data) {
-                    if(data.errcode == 10000) {
-                        $('#total_profit .dasao_profit').html(data.result[0].dasao);
-                        $('#total_profit .total_produce_egg').html(data.result[0].egg);
-                        $('#total_profit .hatch_profit').html(data.result[0].machine_animal);
-                    } else {
-                        alertMsg(data.msg);
-                    }
-                },
-                error: function(data) {}
-            });
-        }
-
-        gethistorylIst();
+        // var userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        //
+        // function gethistorylIst(){
+        //     $.ajax({
+        //         url: host + "/User/gethistory",
+        //         type: "post",
+        //         data: {
+        //             token: userInfo.token
+        //         },
+        //         dataType: "json",
+        //         success: function(data) {
+        //             if(data.errcode == 10000) {
+        //                 $('#total_profit .dasao_profit').html(data.result[0].dasao);
+        //                 $('#total_profit .total_produce_egg').html(data.result[0].egg);
+        //                 $('#total_profit .hatch_profit').html(data.result[0].machine_animal);
+        //             } else {
+        //                 alertMsg(data.msg);
+        //             }
+        //         },
+        //         error: function(data) {}
+        //     });
+        // }
+        //
+        // gethistorylIst();
 
         $(".log-sidebar ul li").click(function() {
             var index = $(this).attr('data-tab') - 1;

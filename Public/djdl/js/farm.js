@@ -43,10 +43,11 @@ $(function() {
 				break;
 		}
 
-		function machine() { //收割机
+		function machine() {
+			//收割机
 			//delete
 			//						userInfo.machine = 1;
-			console.log(userInfo.machine_animal)
+			console.log(userInfo.machine_animal);
 			if(userInfo.machine == 1) {
 				$('.shade .has-mchine').show();
 				userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
@@ -90,23 +91,23 @@ $(function() {
 	$('.fieldBox .field li').click(function() {
 		var me = this;
 		//栅栏的等级
-		var fieldIndex = $.inArray(me, $('.field li'));
+		var fieldIndex = $.inArray(me, $('.fieldBox .field li'));
 		currentField = field_open_ed['field' + fieldIndex];
 		//判断是否是收获鸡蛋。若有母鸡则是收获鸡蛋
 		if (Boolean(currentField)) {
 			if(currentField.egg_status==1&&!userAction){
-				console.log(22)
+				console.log(22);
 				hatchChickenOrEgg(2,currentField.id);
 				return;
 			}
 		}else{
 			if (userAction == 'reclaim') {
-				fun_field_open(me);
+				fun_field_open(me, fieldIndex);
 			}
 			return;
 		}
-		console.log(currentField.egg_status)
-		console.log($(me).find('.chicken-box').length)
+		console.log(currentField.egg_status);
+		console.log($(me).find('.chicken-box').length);
 		if($(me).find('.chicken-box').length && !$(me).hasClass('canOpen')) {
 //			console.log(field_open_ed['field' + fieldIndex])
 //			console.log(currentField.add_num)
@@ -124,7 +125,7 @@ $(function() {
 			switch(userAction) {
 				case 'reclaim':
 					console.log('开地');
-					fun_field_open(me);
+					fun_field_open(me, fieldIndex);
 					break;
 				case 'Up':
 					console.log('增养');
@@ -175,10 +176,10 @@ $(function() {
 			$('.shade .Up').show();
 		}
 		//开地
-		function fun_field_open(me) {
+		function fun_field_open(me, fieldIndex) {
 			var fieldType = $(me).hasClass('green') ? 1 : 2;
 			if(fieldType == 1) {
-				console.log(userInfo.animal_num)
+				console.log(userInfo.animal_num);
 				if(userInfo.animal_num < 300) {
 					$('.NoChick').css('display', 'block');
 					$(".shade").show();
@@ -194,14 +195,14 @@ $(function() {
 				} else {
 					$(".shade").hide();
 				}
-
 			}
 			$.ajax({
 				url: host + "/Farms/openfarm",
 				type: "post",
 				data: {
 					token: userInfo.token,
-					type: fieldType
+					type: fieldType,
+					loc:fieldIndex
 				},
 				dataType: "json",
 				success: function(data) {

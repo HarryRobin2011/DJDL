@@ -96,7 +96,8 @@ class FarmsController extends CommonController
     //开地
     public function openFarm(){
         $this->checkGet(array('type'));
-        $type=I('post.type');//1 绿地 2黄地 
+        $type=I('post.type');//1 绿地 2黄地
+        $loc = I('post.loc');//地的位置
         $animal=$type==1?C('green_farm'):C('gold_farm');
         $time = strtotime(date('Y-m-d',time()).' 00:00:00');
         if(!$animal){
@@ -113,7 +114,7 @@ class FarmsController extends CommonController
         if($type==1){ 
             $count= M('user_farm')->where(array('userid'=>$this->userId,'type'=>1))->count();
             if($count >= 10  ){
-                $this->echoJson('田庄绿地已满');
+                $this->echoJson('牧场绿地已满');
             }
         }else{ 
             $count0= M('user_farm')->where(array('userid'=>$this->userId,'type'=>1))->count();
@@ -122,7 +123,7 @@ class FarmsController extends CommonController
             }
             $count= M('user_farm')->where(array('userid'=>$this->userId,'type'=>2))->count();
             if($count>= 5){
-                $this->echoJson('田庄金地已满');
+                $this->echoJson('牧场金地已满');
             }
 
         }
@@ -137,8 +138,8 @@ class FarmsController extends CommonController
                 'type' => $type,
                 'create_time'   => $time,
                 'num'=>$animal,
-                'egg_status'=>2
-                
+                'egg_status'=>2,
+                'loc'=>$loc
             ));
         if($farmResult){
             addLog($this->userId,'开'.($type==1?'绿':'金').'地'."花费{$this->SupValue}{$animal}只",4,$animal);

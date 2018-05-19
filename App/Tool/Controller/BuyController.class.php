@@ -74,7 +74,7 @@ class BuyController extends CommonController{
         }
     }
     /**
-     * 田庄
+     * 牧场
      */
     public function buyAnimal(){
         $log = M('user_animal as animal')->field('member.phone,animal.*')->join('inner join '.C('DB_PREFIX').'member as member on member.id = animal.userid')->limit(100)->select();
